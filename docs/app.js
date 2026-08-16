@@ -96,13 +96,23 @@ function sectionHtml(cat) {
     </section>`;
 }
 
-function navHtml(categories) {
-  return categories.map((c) => `<a href="#${c.id}">${escapeHtml(c.navLabel || c.title)}</a>`).join("");
+function selectOptionsHtml(categories) {
+  return categories
+    .map((c) => `<option value="${escapeHtml(c.id)}">${escapeHtml(c.navLabel || c.title)}</option>`)
+    .join("");
+}
+
+function jumpToTopic(id) {
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.tagName === "DETAILS") el.open = true;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 async function init() {
   const main = document.getElementById("main");
-  const nav = document.getElementById("topic-nav");
+  const select = document.getElementById("topic-select");
   const updated = document.getElementById("updated");
   const banner = document.getElementById("status-banner");
 
@@ -119,7 +129,7 @@ async function init() {
     }
 
     const categories = data.categories || [];
-    nav.innerHTML = navHtml(categories);
+    select.innerHTML = `<option value="">Topic…</option>${selectOptionsHtml(categories)}`;
     main.innerHTML = categories.map(sectionHtml).join("");
   } catch (err) {
     updated.textContent = "Not yet updated";
@@ -128,6 +138,12 @@ async function init() {
     main.innerHTML = `<div class="empty-topic">No digest data found yet.</div>`;
     console.error("Digest load failed:", err);
   }
+
+  select.addEventListener("change", () => {
+    const id = select.value;
+    jumpToTopic(id);
+    select.value = ""; // reset to placeholder so it can be re-selected to jump again
+  });
 }
 
 init();

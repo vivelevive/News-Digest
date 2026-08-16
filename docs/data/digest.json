@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:18:58.575813+00:00",
+  "generated_at": "2026-08-16T09:28:03.758822+00:00",
   "warnings": [],
   "categories": [
     {
@@ -20,36 +20,6 @@
           "paywalled": false
         },
         {
-          "title": "Research: The Innovation Problems AI Can’t Solve",
-          "url": "/2026/08/research-the-innovation-problems-ai-cant-solve",
-          "source": "Harvard Business Review",
-          "published": "2026-08-14T12:05:50+00:00",
-          "summary": "Generative AI speeds innovation, but it can also narrow thinking, reinforce bias, and distance teams from customers.",
-          "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Why Agentic AI Could Transform Procurement",
-          "url": "/2026/08/why-agentic-ai-could-transform-procurement",
-          "source": "Harvard Business Review",
-          "published": "2026-08-13T12:15:56+00:00",
-          "summary": "The combination of economic visibility, process structure, and persistent friction make it a huge opportunity.",
-          "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Driving value with an investor mindset",
-          "url": "https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/driving-value-with-an-investor-mindset",
-          "source": "McKinsey Insights",
-          "published": "2026-08-13T00:00:00+00:00",
-          "summary": "Long-term value creation is foundational to building strong companies and economies, yet many leaders struggle to ensure that well-conceived, well-executed strategies receive full recognition from investors. Senior Partner Ryan Davies and Associate Partner Jacob Marcus join us to discuss how to anticipate investor reactions, assess opportunities to outperform expectations, and embed an investor mindset into decision-making to build greater resilience.",
-          "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
-          "region": null,
-          "paywalled": false
-        },
-        {
           "title": "How premium leisure travel is rewriting airline economics",
           "url": "https://www.mckinsey.com/industries/travel/our-insights/how-premium-leisure-travel-is-rewriting-airline-economics",
           "source": "McKinsey Insights",
@@ -65,6 +35,26 @@
           "source": "McKinsey Insights",
           "published": "2026-08-13T00:00:00+00:00",
           "summary": "The Tokyo-based biopharmaceutical company is accelerating its pipeline by innovating at the intersection of biology, modality, and disease.",
+          "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Brilliant Moves: Coffee with Suzano CEO Beto Abreu",
+          "url": "https://www.mckinsey.com/industries/packaging-and-paper/our-insights/brilliant-moves-coffee-with-suzano-ceo-beto-abreu",
+          "source": "McKinsey Insights",
+          "published": "2026-08-13T00:00:00+00:00",
+          "summary": "As both organizations begin their second century, Suzano’s Beto Abreu and McKinsey’s Tracy Francis discuss what it takes to lead for the next generation.",
+          "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Research: The Innovation Problems AI Can’t Solve",
+          "url": "/2026/08/research-the-innovation-problems-ai-cant-solve",
+          "source": "Harvard Business Review",
+          "published": "2026-08-14T12:05:50+00:00",
+          "summary": "Generative AI speeds innovation, but it can also narrow thinking, reinforce bias, and distance teams from customers.",
           "why_it_matters": "Sharpens strategic thinking and leadership practice you can apply directly at work.",
           "region": null,
           "paywalled": false
@@ -89,6 +79,16 @@
           "paywalled": false
         },
         {
+          "title": "SpaceX officially closes its Cursor acquisition",
+          "url": "https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/",
+          "source": "TechCrunch",
+          "published": "2026-08-15T16:30:00+00:00",
+          "summary": "AI coding startup Cursor is now officially a part of SpaceX.",
+          "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
+          "region": null,
+          "paywalled": false
+        },
+        {
           "title": "Matt Groening lets slip that Simpsons: Hit & Run might be making a comeback",
           "url": "https://www.theverge.com/entertainment/980720/matt-groening-simpsons-hit-run-d23",
           "source": "The Verge",
@@ -99,41 +99,21 @@
           "paywalled": false
         },
         {
+          "title": "Every fusion startup that has raised over $100M",
+          "url": "https://techcrunch.com/2026/08/15/every-fusion-startup-that-has-raised-over-100m/",
+          "source": "TechCrunch",
+          "published": "2026-08-15T13:15:20+00:00",
+          "summary": "Fusion startups have raised $7.1 billion to date, with the majority of it going to a handful of companies.",
+          "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
+          "region": null,
+          "paywalled": false
+        },
+        {
           "title": "Have a laugh at AI’s expense by roleplaying as a chatbot",
           "url": "https://www.theverge.com/entertainment/980502/roleplay-as-an-ai-chatbot",
           "source": "The Verge",
           "published": "2026-08-15T20:45:00+00:00",
           "summary": "Your AI Slop Bores Me is brilliant in its simplicity. There are two tabs: human and LARP as an AI. On one side you enter a request. On the other, you submit an answer. But the important thing is that there's a human on both sides of the equation.",
-          "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Anthropic shares more details about how Claude’s new watermarks will work",
-          "url": "https://techcrunch.com/2026/08/15/anthropic-shares-more-details-about-how-claudes-new-watermarks-will-work/",
-          "source": "TechCrunch",
-          "published": "2026-08-15T18:58:39+00:00",
-          "summary": "How will the watermarking actually work? Can it be hidden with editing? And how does this affect code?",
-          "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Don’t overlook Elektron’s budget electronic music instruments",
-          "url": "https://www.theverge.com/gadgets/980275/elektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review",
-          "source": "The Verge",
-          "published": "2026-08-15T17:00:00+00:00",
-          "summary": "When I'm asked what to buy if you want to get into making electronic music, I often recommend Elektron's budget-minded Model:Samples and Model:Cycles grooveboxes. They don't grab headlines the way Teenage Engineering's gear or the Telepathic Instruments Orchid do, and even compared to the company's higher-end and more niche musical offerings like the Digitakt, Octatrack, […]",
-          "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "SpaceX officially closes its Cursor acquisition",
-          "url": "https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/",
-          "source": "TechCrunch",
-          "published": "2026-08-15T16:30:00+00:00",
-          "summary": "AI coding startup Cursor is now officially a part of SpaceX.",
           "why_it_matters": "Worth knowing for your own devices, tools, and everyday tech decisions.",
           "region": null,
           "paywalled": false
@@ -158,6 +138,16 @@
           "paywalled": false
         },
         {
+          "title": "SpaceX officially closes its Cursor acquisition",
+          "url": "https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/",
+          "source": "TechCrunch",
+          "published": "2026-08-15T16:30:00+00:00",
+          "summary": "AI coding startup Cursor is now officially a part of SpaceX.",
+          "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
+          "region": "US",
+          "paywalled": false
+        },
+        {
           "title": "Matt Groening lets slip that Simpsons: Hit & Run might be making a comeback",
           "url": "https://www.theverge.com/entertainment/980720/matt-groening-simpsons-hit-run-d23",
           "source": "The Verge",
@@ -168,41 +158,21 @@
           "paywalled": false
         },
         {
+          "title": "Every fusion startup that has raised over $100M",
+          "url": "https://techcrunch.com/2026/08/15/every-fusion-startup-that-has-raised-over-100m/",
+          "source": "TechCrunch",
+          "published": "2026-08-15T13:15:20+00:00",
+          "summary": "Fusion startups have raised $7.1 billion to date, with the majority of it going to a handful of companies.",
+          "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
+          "region": "US",
+          "paywalled": false
+        },
+        {
           "title": "Have a laugh at AI’s expense by roleplaying as a chatbot",
           "url": "https://www.theverge.com/entertainment/980502/roleplay-as-an-ai-chatbot",
           "source": "The Verge",
           "published": "2026-08-15T20:45:00+00:00",
           "summary": "Your AI Slop Bores Me is brilliant in its simplicity. There are two tabs: human and LARP as an AI. On one side you enter a request. On the other, you submit an answer. But the important thing is that there's a human on both sides of the equation.",
-          "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
-          "region": "US",
-          "paywalled": false
-        },
-        {
-          "title": "Anthropic shares more details about how Claude’s new watermarks will work",
-          "url": "https://techcrunch.com/2026/08/15/anthropic-shares-more-details-about-how-claudes-new-watermarks-will-work/",
-          "source": "TechCrunch",
-          "published": "2026-08-15T18:58:39+00:00",
-          "summary": "How will the watermarking actually work? Can it be hidden with editing? And how does this affect code?",
-          "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
-          "region": "US",
-          "paywalled": false
-        },
-        {
-          "title": "Don’t overlook Elektron’s budget electronic music instruments",
-          "url": "https://www.theverge.com/gadgets/980275/elektron-model-cycles-model-samples-groovebox-electronic-music-instruments-review",
-          "source": "The Verge",
-          "published": "2026-08-15T17:00:00+00:00",
-          "summary": "When I'm asked what to buy if you want to get into making electronic music, I often recommend Elektron's budget-minded Model:Samples and Model:Cycles grooveboxes. They don't grab headlines the way Teenage Engineering's gear or the Telepathic Instruments Orchid do, and even compared to the company's higher-end and more niche musical offerings like the Digitakt, Octatrack, […]",
-          "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
-          "region": "US",
-          "paywalled": false
-        },
-        {
-          "title": "SpaceX officially closes its Cursor acquisition",
-          "url": "https://techcrunch.com/2026/08/15/spacex-officially-closes-its-cursor-acquisition/",
-          "source": "TechCrunch",
-          "published": "2026-08-15T16:30:00+00:00",
-          "summary": "AI coding startup Cursor is now officially a part of SpaceX.",
           "why_it_matters": "Signals where US tech investment, product strategy, and regulation are heading.",
           "region": "US",
           "paywalled": false
@@ -217,26 +187,6 @@
       "collapsedByDefault": false,
       "items": [
         {
-          "title": "Death knell? Hong Kong’s five-year plan is a starting gun",
-          "url": "https://www.scmp.com/opinion/hong-kong-opinion/article/3363897/death-knell-hong-kongs-five-year-plan-starting-gun?utm_source=rss_feed",
-          "source": "South China Morning Post (Tech)",
-          "published": "2026-08-16T08:30:07+00:00",
-          "summary": "I’m a little perplexed and bemused by the brouhaha surrounding Hong Kong’s decision to draft its first five-year plan, as if the sky is falling in around the city’s famed laissez-faire economy. Predictably, Yale University’s Stephen Roach (he of “Hong Kong is over” fame) warned in a commentary last month that “Chinese-style central planning” could “over-promise and under-deliver”. In a 2024 commentary, he said Hong Kong had been “shackled by the deadweight of autocracy”. But from my vantage...",
-          "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
-          "region": "Asia",
-          "paywalled": false
-        },
-        {
-          "title": "Beijing and Manila clash over arrests of ‘illegal’ workers as tensions worsen",
-          "url": "https://www.scmp.com/news/china/diplomacy/article/3364178/beijing-and-manila-clash-over-arrests-illegal-workers-tensions-worsen?utm_source=rss_feed",
-          "source": "South China Morning Post (Tech)",
-          "published": "2026-08-16T08:00:12+00:00",
-          "summary": "Tensions between Beijing and Manila appear to have spilled over from the South China Sea to immigration, just as Philippine President Ferdinand Marcos Jnr indicated he wanted to “reset” ties. Manila on Sunday dismissed Beijing’s criticism of Defence Secretary Gilberto Teodoro Jnr over his role in the arrests of Chinese workers at a steel plant in Misamis Oriental in May. A Chinese embassy official in Manila late on Saturday accused Teodoro of carrying out “anti-China activities” to “disrupt”...",
-          "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
-          "region": "Asia",
-          "paywalled": false
-        },
-        {
           "title": "I gave Tencent’s WeChat AI agent control for 24 hours: where it excelled – and stumbled",
           "url": "https://www.scmp.com/tech/big-tech/article/3364068/i-gave-tencents-wechat-ai-agent-control-24-hours-where-it-excelled-and-stumbled?utm_source=rss_feed",
           "source": "South China Morning Post (Tech)",
@@ -247,11 +197,21 @@
           "paywalled": false
         },
         {
-          "title": "UK PM Andy Burnham shifts focus to TikTok and podcasts in social media push",
-          "url": "https://www.scmp.com/news/world/europe/article/3364179/uk-pm-andy-burnham-shifts-focus-tiktok-and-podcasts-social-media-push?utm_source=rss_feed",
+          "title": "Indonesian earthquake survivors recount chaotic escape: ‘house collapsed on me’",
+          "url": "https://www.scmp.com/news/asia/southeast-asia/article/3364170/indonesian-earthquake-survivors-recount-chaotic-escape-house-collapsed-me?utm_source=rss_feed",
           "source": "South China Morning Post (Tech)",
-          "published": "2026-08-16T07:59:43+00:00",
-          "summary": "Whether he is pulling a pint, tossing a builder’s helmet in the air or running with Olympic medallist Mo Farah, the UK’s new Prime Minister Andy Burnham has embraced social media with a deft touch. As well as putting out videos on his own accounts on X and TikTok, he has sought to broaden his audience by appearing on entertainment channels run by creators with large followings. Compared with predecessor Keir Starmer, “Burnham has a far more astute communications team around him” with a “better...",
+          "published": "2026-08-16T04:45:39+00:00",
+          "summary": "Melania Nius was at her husband’s hospital bedside on Indonesia’s Flores Island when a powerful quake shook their town to its core, sending patients fleeing into the chaos outside. Melania, 56, recounted how she prayed as she fought to get her family to safety. “The four of us – my husband, our two children, and I – were on the bed,” when the 7.7-magnitude rattler struck just north of Flores island at around 5.30am on Saturday. At least 48 people were killed in the quake and dozens injured. “The...",
+          "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
+          "region": "Asia",
+          "paywalled": false
+        },
+        {
+          "title": "Heatwave to persist in Hong Kong before thunderstorms set in midweek",
+          "url": "https://www.scmp.com/news/hong-kong/article/3364168/heatwave-persist-hong-kong-thunderstorms-set-midweek?utm_source=rss_feed",
+          "source": "South China Morning Post (Tech)",
+          "published": "2026-08-16T04:35:38+00:00",
+          "summary": "Scorching weather will persist across Hong Kong on Sunday and Monday, with maximum temperatures climbing to 35 degrees Celsius (95 Fahrenheit) before a low-pressure system brings squally thunderstorms and unsettled weather by midweek. The very hot weather warning has been in force since 6.45am on Sunday, with temperatures across the city ranging from 28 to 33 degrees, according to the Hong Kong Observatory. Mercury in Tai Po soared to 34.8 degrees at noon. “Winds will be weak and the weather...",
           "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
           "region": "Asia",
           "paywalled": false
@@ -286,30 +246,10 @@
       "collapsedByDefault": false,
       "items": [
         {
-          "title": "China's Z.ai says new model nears Anthropic's Mythos 5 in cyber-defence tests - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNS1MtSVJMY0p5blN0MUdSV0xMMmE1NzdWdVJYUjh0cTdCNVJyOXRLVmtId004V0xIc2FyVS1IRk5laFR1MHBKemVhcWV0SGxWZkVJUGM0V2t6d214Zlg1QUFQam1aS1RoanhfOXR3dzNmWmN3enhDWWpDZ1poT1JJek92Q0tIU2ZvdVR1VTlWcEdtZVZSVmVEa1BKV29XaHIwdHVoTHFJUDhkc0pveVpidEtOcE5walIyM1E?oc=5",
+          "title": "Adyen raises revenue forecast on acquisition boost, shares soar - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQTDZha3pOVEZhTEdYZXo4QzBWbDhHcTRGby1xM3ZKalg2WTZmbHRkeVF3Z09fcEs4OVl3cmVwWHp3aldiWkJaNUtiUUNNQkdBbGdvR212WnFRYzJ6NU1ucm9yZjI4djVkanRGVHpVOHd6TDVUVXFrZ3R1TDJ4eGRFMU92NEhPdmlXbTFnRldnLTJRN21lTDhMazBPUHk3dzFiZzZqMWxB?oc=5",
           "source": "Reuters Technology",
-          "published": "2026-08-14T12:53:19+00:00",
-          "summary": "",
-          "why_it_matters": "Flags European tech and regulatory moves that often set the tone for global tech policy.",
-          "region": "Europe",
-          "paywalled": false
-        },
-        {
-          "title": "China's Pony.ai, Uber to jointly deploy over 2,000 robotaxis in Europe - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOTFjbGtTXzEyN0FWNms5M1Z5ZnlDZXA1Qlktd3ZFOWk3N01FQXNPdFlNaFBRNGotM295YkhCWkh5WDh5WjByaUc3MlN4N3hnYTlVVlB6SW81elB0M0dFeldIcFMyQ2ZkQTFvVjFpMlNVd3otMVJFWlpjTGlOMW5LWVNtOUJreDNhNjBvRXY3cV9sMDAzMGE0djRCWUJwTnp2Y3pXVkVYemdaS00?oc=5",
-          "source": "Reuters Technology",
-          "published": "2026-08-14T01:07:00+00:00",
-          "summary": "",
-          "why_it_matters": "Flags European tech and regulatory moves that often set the tone for global tech policy.",
-          "region": "Europe",
-          "paywalled": false
-        },
-        {
-          "title": "Anthropic in talks to buy Decart AI, source says - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQRlV4bzBCa2VxRlZkN1VMdzh3UVR0VmJ5d0VIUEpLQkZBRFBpaC1sSkFuTzAtaU0zZkdjNmh1dFB0ZXdQLW5rcU82Q3g3SW1xOEpXWjl6MmpuOUQzVkhFcXBFRFRsWnpXb0t6RFNFRlZfV0d5VXdJSVVKUjBKcGI0YTJvM2ltekctTHQ0WlhyWkFQQQ?oc=5",
-          "source": "Reuters Technology",
-          "published": "2026-08-13T21:29:13+00:00",
+          "published": "2026-08-13T05:50:26+00:00",
           "summary": "",
           "why_it_matters": "Flags European tech and regulatory moves that often set the tone for global tech policy.",
           "region": "Europe",
@@ -344,6 +284,16 @@
           "why_it_matters": "Flags European tech and regulatory moves that often set the tone for global tech policy.",
           "region": "Europe",
           "paywalled": false
+        },
+        {
+          "title": "China's Z.ai says new model nears Anthropic's Mythos 5 in cyber-defence tests - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNS1MtSVJMY0p5blN0MUdSV0xMMmE1NzdWdVJYUjh0cTdCNVJyOXRLVmtId004V0xIc2FyVS1IRk5laFR1MHBKemVhcWV0SGxWZkVJUGM0V2t6d214Zlg1QUFQam1aS1RoanhfOXR3dzNmWmN3enhDWWpDZ1poT1JJek92Q0tIU2ZvdVR1VTlWcEdtZVZSVmVEa1BKV29XaHIwdHVoTHFJUDhkc0pveVpidEtOcE5walIyM1E?oc=5",
+          "source": "Reuters Technology",
+          "published": "2026-08-14T12:53:19+00:00",
+          "summary": "",
+          "why_it_matters": "Flags European tech and regulatory moves that often set the tone for global tech policy.",
+          "region": "Europe",
+          "paywalled": false
         }
       ]
     },
@@ -360,6 +310,16 @@
           "source": "ZDNet",
           "published": "2026-08-15T10:00:42+00:00",
           "summary": "The Victrola Soundstage is ideal for those who want to build their vinyl system up rather than out, with plenty of digital and analog connections for every kind of listener.",
+          "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
+          "region": "Australia",
+          "paywalled": false
+        },
+        {
+          "title": "Apple is warning users of new spyware attacks - what to do if you're a target",
+          "url": "https://www.zdnet.com/article/apple-warns-targetted-spyware-attacks-what-to-do/",
+          "source": "ZDNet",
+          "published": "2026-08-14T16:08:11+00:00",
+          "summary": "New spyware attacks are aimed at journalists, activists, politicians, diplomats, and others. Here's how Apple is notifying them and what they should do - after turning on Lockdown Mode.",
           "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
           "region": "Australia",
           "paywalled": false
@@ -385,31 +345,11 @@
           "paywalled": false
         },
         {
-          "title": "Apple is warning users of new spyware attacks - what to do if you're a target",
-          "url": "https://www.zdnet.com/article/apple-warns-targetted-spyware-attacks-what-to-do/",
-          "source": "ZDNet",
-          "published": "2026-08-14T16:08:11+00:00",
-          "summary": "New spyware attacks are aimed at journalists, activists, politicians, diplomats, and others. Here's how Apple is notifying them and what they should do - after turning on Lockdown Mode.",
-          "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
-          "region": "Australia",
-          "paywalled": false
-        },
-        {
           "title": "ChatGPT's new Computer History tracks your Mac activity to create a timeline - but should you let it?",
           "url": "https://www.zdnet.com/article/chatgpt-computer-history/",
           "source": "ZDNet",
           "published": "2026-08-14T16:00:16+00:00",
           "summary": "Rolling out to ChatGPT's Mac app, Computer History creates a timeline from your activities across the apps and websites you use on your Mac. Is that a privacy risk?",
-          "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
-          "region": "Australia",
-          "paywalled": false
-        },
-        {
-          "title": "Dell XPS 13 review: The first budget laptop to rival Neo raises the bar for all PCs",
-          "url": "https://www.zdnet.com/article/dell-xps-13-spotlight/",
-          "source": "ZDNet",
-          "published": "2026-08-14T16:00:00+00:00",
-          "summary": "The Dell XPS 13 flaunts build quality rarely seen at this price point, but not without trade-offs.",
           "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
           "region": "Australia",
           "paywalled": false
@@ -434,46 +374,6 @@
           "paywalled": false
         },
         {
-          "title": "Two women killed in floods in Spain - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQSUxBb3EyOW41YVFzUVIwei1TMV9SMmUzbHV1OXFLSE9hSlhCS1MzdjdSS0tJanE2bE5zMHdicFJSb2pMU21HMW00UjZxaVh1X0JEWFlkOEhKalhvY2ZwQXFMemVkZWxrZGVzUlZ4OFpfVzRva0kwbE9RQUd6QU9qV0FEdFlEM3RrdEdWMWFFYw?oc=5",
-          "source": "Reuters Business",
-          "published": "2026-08-16T07:04:38+00:00",
-          "summary": "",
-          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "German companies cut US investment to three-year low, data show - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQTk3Q1V1UFUwM0ZRa1BjcTh6SjBuZzJfZjZ5NS1sdjlQZVl3MndHSzQzeVhWdjlTQzRDM2x2QlFHYnBldzNLR2l1dTlqOW1vaWkzYVhGTGs0bVVKT1FVOXJOWFNmajdSMUtteXA5am1BaUZvYjZqSVBJR3dUSS1oYmQ5TUtUdjdxWXhmal9LN0tKdmVCbG5ITmV6NWZWWGptRGxaM3AwcU1lQ0JxZlF1dWhn?oc=5",
-          "source": "Reuters Business",
-          "published": "2026-08-16T06:35:00+00:00",
-          "summary": "",
-          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Remote tungsten mine’s revival delivers windfall for its lenders - AFR",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVDlTWnlCaERuZHJWU3htbWpwTEZTV2RsUmFMZjdGV2NXNmtDVjdMYWpla3AxNWFLM2dLbzQ5cVN0QjBBa00zWTI4T3BOOWtLdV9yakJsZ0hnUUs5NS00V3lwaDhLY2ozaUI1bm14NWJMWUJMSjVMUmdMajZaTWRUMW5DYmZmbEJrSjY2aEhlaF9LTmFCLWVsaVk1RDhENDNCUUhFNTVFRzEwODdfQzB4RndR?oc=5",
-          "source": "Australian Financial Review",
-          "published": "2026-08-16T06:35:00+00:00",
-          "summary": "",
-          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
-          "region": null,
-          "paywalled": true
-        },
-        {
-          "title": "Cbus pushes for government crackdown on adviser fees - AFR",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNV3dZN2hYbEFWUWtHTGR0OGx3ci1GcG5qd2F4WHgxZnNOM0dCajJEV3BQOG9WSFpITW1nRXRhbHU1QktGOHBGRlFQcUNIcEh2UF9MdUxxQ1Q4QS1PZEgxdlc3dEJDT00wUktJUGs2UjZTSjNZbkVVSzg5S0ZWUmdkaGNaaXNTRUpDTkF6R3h3eURfYlh6aW5tZDhxM0lUaHdlbm84bWhmUUxWWHlEdHN3NXdIbE5sSEo4?oc=5",
-          "source": "Australian Financial Review",
-          "published": "2026-08-16T06:05:00+00:00",
-          "summary": "",
-          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
-          "region": null,
-          "paywalled": true
-        },
-        {
           "title": "How weight-loss drugs are fuelling brewer Kirin’s next boom - AFR",
           "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPZURqd3huRzBqaFNYUTVWRWFSeDk1T1NrVFZUUTJweVA4QUdhanlTMzJJeG9GRW44dmtVQWNQazR5Q0Q2RlpwNEJXTWdwUlFGRHJGLUdHUG5kSndRZjZWRGItTGE0TGNXLW1GQXVOZERZa19hSW5PMVBnRXJjX3RhNEVIbjUwWTVuTWZfdVQ2Q3JHSmZvbGhEcjNvUS1TcDY3dHdfVDNvZkdSR0t3WFM4N2hJdHQ0ZHJnMTg4RUpJLVlONmhjSkQ0?oc=5",
           "source": "Australian Financial Review",
@@ -482,6 +382,36 @@
           "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
           "region": null,
           "paywalled": true
+        },
+        {
+          "title": "Europe's heatwaves expose insurance gap as business losses mount - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPV1I5Nno4ZTlfSzdpV1JwbVVMdDZtODFfaUl3SnJHZ1pGdW41M2hGVW9NUTd1ZWo2UW1iZkQ5cWVpcnQyY09GYnRFZ2l3QzBlN0NRWWZ1Skt4a1NzcnFUWlY0bi12OTZUNGdhblB0VFdrcDhOdWRuSm1EZlYzQUJ4YkQxdlpjeFNwTzZMWGZ4SmRtXzh2Vm9vWDRkMTdtSUR0ZlZCRjV2bnM?oc=5",
+          "source": "Reuters Business",
+          "published": "2026-08-16T05:13:51+00:00",
+          "summary": "",
+          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Lakers Deal Caps Billionaire Rush Into Sports",
+          "url": "https://www.bloomberg.com/news/videos/2026-08-15/lakers-deal-caps-billionaire-rush-into-sports-video",
+          "source": "Bloomberg Markets",
+          "published": "2026-08-15T14:03:45+00:00",
+          "summary": "Bob Iger and Josh Kushner moved from pursuing a Las Vegas NBA expansion team to agreeing within days to buy the Los Angeles Lakers in a record $12.5 billion deal. Bloomberg News Host of Sports City Randall Williams is on Bloomberg This Weekend with hosts Joe Mathieu and Carol Massar and explains that the transaction comes as Madison Square Garden Sports moves toward separating the Knicks and Rangers businesses and Jeff Bezos joins a group taking a minority stake in Liverpool, underscoring investor demand for scarce live-sports assets. (Source: Bloomberg)",
+          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Two women killed in floods in Spain - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQSUxBb3EyOW41YVFzUVIwei1TMV9SMmUzbHV1OXFLSE9hSlhCS1MzdjdSS0tJanE2bE5zMHdicFJSb2pMU21HMW00UjZxaVh1X0JEWFlkOEhKalhvY2ZwQXFMemVkZWxrZGVzUlZ4OFpfVzRva0kwbE9RQUd6QU9qV0FEdFlEM3RrdEdWMWFFYw?oc=5",
+          "source": "Reuters Business",
+          "published": "2026-08-16T07:04:38+00:00",
+          "summary": "",
+          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
+          "region": null,
+          "paywalled": false
         }
       ]
     },
@@ -492,6 +422,16 @@
       "subtitle": "Filtered from Finance News for ASX 200 / S&P 500 + analyst rationale",
       "collapsedByDefault": false,
       "items": [
+        {
+          "title": "‘Outlier’ S&P 500 Earnings Strength Cheers Wall Street’s Bulls",
+          "url": "https://www.bloomberg.com/news/articles/2026-08-15/-outlier-s-p-500-earnings-strength-cheers-wall-street-s-bulls",
+          "source": "Bloomberg Markets",
+          "published": "2026-08-15T13:00:00+00:00",
+          "summary": "Corporate America is blowing past Wall Street’s expectations for a stellar earnings season, adding to the rosy backdrop for a stock market trading near a record high.",
+          "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
+          "region": null,
+          "paywalled": false
+        },
         {
           "title": "Why Wall Street is coming for your home loan - AFR",
           "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPWmpDVTVhdmtVT2FJQVROLXZBNXA5WWdMb09LcjBjZFh4Y292dDBHS1ZONGFWUlp4bnFRSVlmTlY5MTBLSHd2UVJRY09rY2VGYjk0QUg0R09VeTBpTkNFRVFyeWZoUVotc1JMQ1dRYmVXNnNyaU5YdE9WYVVLZk42WGlZMFNfYnBKSUx1WHpmdV9ld2xuTUt4aTlEODZTVVMxM0I0NjhoWVp0YlhKa1E?oc=5",
@@ -513,26 +453,6 @@
           "paywalled": false
         },
         {
-          "title": "‘Outlier’ S&P 500 Earnings Strength Cheers Wall Street’s Bulls",
-          "url": "https://www.bloomberg.com/news/articles/2026-08-15/-outlier-s-p-500-earnings-strength-cheers-wall-street-s-bulls",
-          "source": "Bloomberg Markets",
-          "published": "2026-08-15T13:00:00+00:00",
-          "summary": "Corporate America is blowing past Wall Street’s expectations for a stellar earnings season, adding to the rosy backdrop for a stock market trading near a record high.",
-          "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "S&P 500 ends lower as investors weigh data, Middle East tensions - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOODBmUXllM0JmeFUycXhzSF9tekVEc094VlpCWnFsZ1JsMHo2Y2JEMGJnUmlPLWZOZEFJRy01UnR6VHdRODJMUEJlY3IxeXlXYWNrZHN2YUhoaS1EeVRyZDJCTUlvRkw0Rmp3d1MtZjBIb2dwVnhGbTg2YTc4MF9ONmVRdm9VTVBSdXVyY0VFZHUxRFhoTWJRUkg2YWI0SEw5WVVyYjZraTdFeG1zQTVJTWhXSFdDSnBLUVhXTXBR?oc=5",
-          "source": "Reuters Business",
-          "published": "2026-08-14T22:57:49+00:00",
-          "summary": "",
-          "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
-          "region": null,
-          "paywalled": false
-        },
-        {
           "title": "EXCLUSIVE: Jane Street took $15 billion hit in July tied to Situational Awareness, AI selloff, sources say - Reuters",
           "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOX2EtYUxGWFNvME5USWtGejIxeFI4bENXODFmX1hnWU5BMl9TbW81Ym1DUzZQZlk3VE1sUlpLQUtjV0x5S3JEcjNBTVBZOHdhVEZlN0pYOVhKTmwzSnc3eTV2VGI3UXNqODRhdlo1UHgyd1otM0RQMzVFQWZoclNWdm9ENkN1bS1zcmQtOGJMR21fTzdZSUtWazROcVRJclBTY050czlRMjVwNFN4ME9nOU9PNmxkdGoxa2pRTVRRN1VKTXpkYXpJ?oc=5",
           "source": "Reuters Business",
@@ -543,10 +463,10 @@
           "paywalled": false
         },
         {
-          "title": "Hanwha, Fincantieri shares rise after Trump opens Navy shipbuilding to foreign yards - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQNmZJY05rcUQ5ay1lOEZ1aFVrYU1CWmhicjZvR29ZeTUwRzR1bUZHZS1HNGh4WlNLdzh2aHBoNU11ekllNnJUeExVSU1LRElXQVJoaWU3TzNaOGpxT3hodF95WV81WThZelZSTTBKenRJNDRmVmdFQm0xTW9nekttZi1DcjhiaEE2QXJzTGhSMlhHNmY5MUFUSVk2YUlXbkhleU1oWjR2Y05KZ3FocmM2MU5uV1RQWHk2RmtLZnhaMnl3ZVh3VUdlZkRYSkxuSWFWNFdvRTZlQm5OVmM?oc=5",
+          "title": "Reddit surges on S&P 500 inclusion, set to replace AvalonBay - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQdFFxNFRhbXc1eElDalRIMXozM2ZOYkN1S0JDY0Ixc3EyUFBMWlU2T2ZqdHhVczFFYy1Pd191Nkh5S1JlUGRSTWpzdlVjM1VOa0psM2Vyb3V2WWxDQ1FReFA1c2ljcWJOLVdJN0c4S1lBWWE3d0hFOHNjcGp6cVdsaE5NaEtWSDBRcWNibVZHMU9jRmNHMkVna0tFb25MOWZ6R3FiMjd4VTc?oc=5",
           "source": "Reuters Business",
-          "published": "2026-08-14T20:41:18+00:00",
+          "published": "2026-08-14T13:48:22+00:00",
           "summary": "",
           "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
           "region": null,
@@ -561,6 +481,36 @@
       "subtitle": null,
       "collapsedByDefault": false,
       "items": [
+        {
+          "title": "National Claims and Policies Database statistics",
+          "url": "https://www.apra.gov.au/news-and-publications/national-claims-and-policies-database-statistics",
+          "source": "APRA",
+          "published": "2026-07-03T00:00:13+00:00",
+          "summary": "Breadcrumb Home Statistical Publication National Claims and Policies Database statistics A comprehensive database of policy and claim information on professional indemnity and public and product liability insurance. General insurance Published 3 July 2026 Print On this page On this page The National Claims and Policies Database (NCPD) is a comprehensive database of policy and claim information on professional indemnity and public and product liability insurance. It contains data on every open, reopened or finalised claim and policy underwritten since 2003 by Australian APRA-regulated general insurers. NCPD Statistics Policy Reports Masked December 2024 ZIP 9.08 MB ‧ 3 July 2026 Claims Reports Masked December 2024 ZIP 27.81 MB ‧ 3 July 2026 Lloyds Reports Masked December 2024 ZIP 234.12 KB ‧ 3 July 2026 Facility Reports Masked ZIP 135.32 KB ‧ 3 July 2026 Access to…",
+          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Quarterly Superannuation Industry publication",
+          "url": "https://www.apra.gov.au/news-and-publications/quarterly-superannuation-industry-publication",
+          "source": "APRA",
+          "published": "2026-06-22T00:00:00+00:00",
+          "summary": "Breadcrumb Home Statistical Publication Quarterly Superannuation Industry publication Superannuation Published 22 June 2026 Print On this page On this page The Quarterly Superannuation Industry Publication (QSIP) contains data on superannuation products, investment options, member demographics and investments. Quarterly Superannuation Industry Publication - March 2026 XLSX 416.78 KB ‧ 22 June 2026 Key Metrics Dataset - Asset Allocation - March 2026 CSV 1.49 MB ‧ 22 June 2026 Key Metrics Dataset - Industry Composition XLSX 337.29 KB ‧ 22 June 2026 Key Metrics Dataset - Membership - March 2026 CSV 6.47 MB ‧ 22 June 2026 The database presents the statistics in a database format for each of the topic areas of this publication (Product composition, Membership and investments). Database versions of this publication contain additional back series data, whereas the current…",
+          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Recruitment firm Hudson Global Resources (Aust) Pty Ltd fined $270,000 for breaching financial reporting obligations - ASIC",
+          "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQbTJWaFVxZXJkUktfQ1duODVJQ0pIbGk4a3ZMdFRrRjNYUVg2Ump3eXgyNHdTWW84R01lM0YxcWZJbWJScXJmU1VCZEo4ZnlfaDhXY002RVFfUmFPckdjRFQ1UWFTampIeG5MOG9mRXZCZjBBbXZzaU5SVExHaVhYNHVrQjhYNFZJUFEzVlUxRUJvZ3JldVZsMHRYYTZUWFdDcWdRdHBkQnF6TWRacVJxeTZtMnRUSkMxWndDTkVucDJ4eFRFVWVtQThET0RNMURiR3FadEl2ekRTNW8wQkE4Q2pDcFB0QzBOX01yV2NpOUxmdjcwU3ZXdlNGV2tOQlpBM2VVM1lNaEpFM3RfNXRwSlVsekZEQkFCR2pjREhmNlBFSTRaLTRnSzk4b1Q?oc=5",
+          "source": "ASIC",
+          "published": "2026-08-12T01:26:07+00:00",
+          "summary": "",
+          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
+          "region": null,
+          "paywalled": false
+        },
         {
           "title": "McPherson’s liable for continuous disclosure failure and misleading investors, former CEO breached directors’ duties - ASIC",
           "url": "https://news.google.com/rss/articles/CBMirgJBVV95cUxQelVLaGRNNTN3VHVPRDRERnU2dWxHYXZWV040SEVwUDBnNWl4OF9aQ2RaYUFaYVJpV1F3b0ExMmItSjlpUGx5ajFyZkxuLWd0bXZzOEUtdzQzMzdRMlZ5Y3N3RGhsaTFuM1lmQ2pHSkNXQmxQajAzZ3pYeW45M05Ccjc3WEw3emNjQmV3OGo1WmNWcEtHYkVzb25ncjlXX19FR2xKN0lDdU9Nc3pKd2FtVmhEaXpHTTZKN3Y4NWVaWVNQZEJJdG9QU2U5Wk9RMXFQZEVvZVg3cUdwTmUyZzhKMmV6aEp4b0RXX3otTmIxX0FNSmt5ZS02ajVZT0xaNkh4VEU1Z1NwckUzREg2UV9MY1EzSDlSOGZPTU42X1BpRFRncklBWFNZNVhNNWF0UQ?oc=5",
@@ -580,46 +530,6 @@
           "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
           "region": null,
           "paywalled": false
-        },
-        {
-          "title": "ASIC warns against Yepbit and Yepbit Exchange - ASIC",
-          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQczE4Z1c5WUlyRVpyUkJUY2wxX2JQejNxMWpJM21XSzZ3cmFBUzVGNG5Ed0hCdkZfOF80Y1BRRXFIbkJWNEhacmNIUks2Vktwa0tpWXVhazMtOTBFMDV3MnpGekZXa0pPNnhPb28yNWhWV0dEWWt5alhQQ19IaE5jM2p3dzBBNURSaTZsMl9ETnM4ZXBsbG92V0JPZjV1amM0YVU2elBR?oc=5",
-          "source": "ASIC",
-          "published": "2026-08-12T03:48:28+00:00",
-          "summary": "",
-          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Recruitment firm Hudson Global Resources (Aust) Pty Ltd fined $270,000 for breaching financial reporting obligations - ASIC",
-          "url": "https://news.google.com/rss/articles/CBMirAJBVV95cUxQbTJWaFVxZXJkUktfQ1duODVJQ0pIbGk4a3ZMdFRrRjNYUVg2Ump3eXgyNHdTWW84R01lM0YxcWZJbWJScXJmU1VCZEo4ZnlfaDhXY002RVFfUmFPckdjRFQ1UWFTampIeG5MOG9mRXZCZjBBbXZzaU5SVExHaVhYNHVrQjhYNFZJUFEzVlUxRUJvZ3JldVZsMHRYYTZUWFdDcWdRdHBkQnF6TWRacVJxeTZtMnRUSkMxWndDTkVucDJ4eFRFVWVtQThET0RNMURiR3FadEl2ekRTNW8wQkE4Q2pDcFB0QzBOX01yV2NpOUxmdjcwU3ZXdlNGV2tOQlpBM2VVM1lNaEpFM3RfNXRwSlVsekZEQkFCR2pjREhmNlBFSTRaLTRnSzk4b1Q?oc=5",
-          "source": "ASIC",
-          "published": "2026-08-12T01:26:07+00:00",
-          "summary": "",
-          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Court orders Fiducian Investment Management Services to pay $7.3 million penalty over operation of ESG fund - ASIC",
-          "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxOZ1BFUjhBbi1ickxLTk5PSUNodG5JVkZOOWRJZk9ZU2gxUmtBdmYyeDN1X1Y0d3VOeEpHT3FKTzY5cGEtZlEtWGZLTXluQ0JCS0tfOFFoanp5cE5IeXFVWEY1ZEo1eEhlcm1QUk91NkhJOWdSeXNoQk1iTjlzX2dKNWlMbnpKYkxkY0NrZWY0akFLLUxKQUpJT1F0d3BYcld2d2lMOXhZQ3JvNS0wLWdlVXlYeldkRmJvX0w4dUFHWi1EOXJyaEF3eXBnMm16OURnY29qQTY4eUg5Y0tJR05zd0ZBZGlSdUFOMVNrQWMwN29RQjU4d1RDckxPME1QM3BQWWlXbFl3dUhRM1BUT0U1dUdLOGZwVWFwU3NuN1ZRbnNUUQ?oc=5",
-          "source": "ASIC",
-          "published": "2026-08-12T00:25:51+00:00",
-          "summary": "",
-          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "26-190MR Liquidator disciplinary committee publicly reprimands Simon John Thorn - ASIC",
-          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxONjZmci10SEZpM185bmlKNUhHcXFKQTZJdjlFUkdjVGV2SnRJUkZOQ1dJa19FVEpFYml5d2RLVDRyV1BZWGJLYWs0c2Z6NDZrM3NOMU1kUkFtdUtMU1c2TnpxbnB4OXF1Z0dyLVVvNGZSbWhfNmxFNm8yX0lwYzVxMjJURlY1d1VMOURvVUw0R2RLZ3lrdk40OVlJbjJnN3lCVjc5Qy1mVjFSak9RR3Roa3MxdUVhLWxNV1kxRHpXWTlSTVRvUmJrRmdfb0llNENKenhaSUhzb194RkdNb3M5d1ozczlGSE9QbzJFMzJ0bUJjelk?oc=5",
-          "source": "ASIC",
-          "published": "2026-08-11T22:35:25+00:00",
-          "summary": "",
-          "why_it_matters": "Regulatory and compliance shifts that affect how financial-services firms must operate.",
-          "region": null,
-          "paywalled": false
         }
       ]
     },
@@ -631,20 +541,20 @@
       "collapsedByDefault": false,
       "items": [
         {
-          "title": "Ukrainian drones strike Moscow region, killing one - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNYUVQMGdnUEljNGo4eDhSbHFoSUtDZ2FVLU5hTHNmZXUwMFVDTTdneTR3S2owc1pSZjBtcHNtVkZKU25oLXlNbWxENHVhM2F1ZUtnUVVicEMzai1MMVgyZk5JLVJPRjRDUklLc21zcjJycVM5endpS2plUjRHS3FhMmFIa29MUlRjRzRpNDlTdnRLS0JuTUE?oc=5",
+          "title": "Twelve killed and at least 10 injured in Polish bus crash in Hungary - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZ2puckZxdHQ1aDQ2YmsxMXpuTHd6M0ZkMVhzOFNjXzJ3aTEzeHN6OEMyMkRCWTU2Y21MUUR2YlFjUlJmSG1Eb0JiOF9sVkdxY1dLMTBUY2xiUnNQdXlCRkFSeFNsdUJ0REd4NGxINnRZMDhyZWoxMzRMWlNTSWExd0xGT1pLWWJUcDQ5WEJPYVlBdDQ2aE0wazZRMzlrdw?oc=5",
           "source": "Reuters World",
-          "published": "2026-08-16T08:13:40+00:00",
+          "published": "2026-08-16T06:07:00+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
           "paywalled": false
         },
         {
-          "title": "Twelve killed and at least 10 injured in Polish bus crash in Hungary - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZ2puckZxdHQ1aDQ2YmsxMXpuTHd6M0ZkMVhzOFNjXzJ3aTEzeHN6OEMyMkRCWTU2Y21MUUR2YlFjUlJmSG1Eb0JiOF9sVkdxY1dLMTBUY2xiUnNQdXlCRkFSeFNsdUJ0REd4NGxINnRZMDhyZWoxMzRMWlNTSWExd0xGT1pLWWJUcDQ5WEJPYVlBdDQ2aE0wazZRMzlrdw?oc=5",
+          "title": "Ukrainian drones strike Moscow region, killing one - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNYUVQMGdnUEljNGo4eDhSbHFoSUtDZ2FVLU5hTHNmZXUwMFVDTTdneTR3S2owc1pSZjBtcHNtVkZKU25oLXlNbWxENHVhM2F1ZUtnUVVicEMzai1MMVgyZk5JLVJPRjRDUklLc21zcjJycVM5endpS2plUjRHS3FhMmFIa29MUlRjRzRpNDlTdnRLS0JuTUE?oc=5",
           "source": "Reuters World",
-          "published": "2026-08-16T06:07:00+00:00",
+          "published": "2026-08-16T08:13:40+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
@@ -661,16 +571,6 @@
           "paywalled": false
         },
         {
-          "title": "North Korea's Kim, Russia's Putin reaffirm ties on Korean Liberation Day - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNN2p1U3RrcWFybldKeEVnT0l6SjJKWlpCUGlNVXlCd0RseFdVR2g2VVc4emNtTGdfU1Jub1kxQTZpaVZRN3duQUhVYldjaUhVLWhJS2RqcnR5akVlUDF1TlFERHlGUTVvMWxzQWNkQzNDY05vdjBxLThaSmlTX2dzdlVpdkJ6dUlnOVRPZUxOM29Oc0MtWmVHQzE2NzNNdUlnalFDcXhvRURNRFliUWd1RUwzRkw?oc=5",
-          "source": "Reuters World",
-          "published": "2026-08-16T02:09:38+00:00",
-          "summary": "",
-          "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
-          "region": null,
-          "paywalled": false
-        },
-        {
           "title": "Australia gun buyback to start in November, PM Albanese says - Reuters",
           "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZ1kzNTZkLW56OFd5QVlmNzZNMXN2eVBBdWtabkRjdDhkUUZyVmVORWJ4WHNjd2JCejJsOXpQX0t6VElJam5HMHRidzNyTEFxbm1lWEhqNkZTWFg3dEdISWtQMGVIbjA1TWZ6ZTdYdkRvVGowbkc5aU5BOGt3OGs4Mm5YUWNVVi01SERJWVFpdkZsc1N1N0ZyR055bHduQUZCdmk4Uk1yU1Nyc2gz?oc=5",
           "source": "Reuters World",
@@ -681,10 +581,10 @@
           "paywalled": false
         },
         {
-          "title": "Russia attacks Kyiv overnight, injuring three, Ukraine officials say - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRDQ2bnhPSnIySk54TjdqYmlQeVd3eEkxSU00ckF6OHZjUkI1S3ZUQm9VRUFvakFsajBqcjFVWlE5cTZsNjFNdUozMGlxQ0tvWTQ2Unl2SjF4UlJpMVlHSFdxOV9xa3hXcWFqMFloSGNFNHVSTVM2UUItcDdhaUZ5dzRTa3Z0eEpPdV9PUVBhV3Z3WVhGZ1NQNjd5LVA5RWNOTjhXV3IxOGJEanUzM1BwcFNycFczNDdMWUEzYXhDQkk?oc=5",
+          "title": "North Korea's Kim, Russia's Putin reaffirm ties on Korean Liberation Day - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNN2p1U3RrcWFybldKeEVnT0l6SjJKWlpCUGlNVXlCd0RseFdVR2g2VVc4emNtTGdfU1Jub1kxQTZpaVZRN3duQUhVYldjaUhVLWhJS2RqcnR5akVlUDF1TlFERHlGUTVvMWxzQWNkQzNDY05vdjBxLThaSmlTX2dzdlVpdkJ6dUlnOVRPZUxOM29Oc0MtWmVHQzE2NzNNdUlnalFDcXhvRURNRFliUWd1RUwzRkw?oc=5",
           "source": "Reuters World",
-          "published": "2026-08-16T01:33:00+00:00",
+          "published": "2026-08-16T02:09:38+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
@@ -700,21 +600,21 @@
       "collapsedByDefault": false,
       "items": [
         {
-          "title": "A house for $110,000? This regional NSW cottage is heading to auction - Domain",
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQclVQLUVSSzlHS3hsbUc4bm1PMVgxemo2VzJha3MtWC1RZ182X3JkVy03LUNfTU85UGx6aEdFdktkZFZ0Rm45ZUI3UTNzYVdndXRfTmFQN3RnU1ljTmFTLUhJbGZ2LUtWSjhJeW40ZmJ0TDdpN2dWY1NGcERPSlUwMlF5dGNtQTJpa195d1FSQ3Y3NGcwU3lScmlkal9LS3ZiMWdKU2N4SFNfdU9PbVU4dGhTdC1mVHdxeWFwQlQ1bDdPS1V1LVE?oc=5",
-          "source": "Domain News",
-          "published": "2026-08-15T08:41:33+00:00",
-          "summary": "",
-          "why_it_matters": "Relevant to Sydney/NSW property market conditions if you're tracking prices or planning a move.",
-          "region": null,
-          "paywalled": false
-        },
-        {
           "title": "More than half of Sydney suburbs rents climb after tax changes",
           "url": "https://www.realestate.com.au/news/more-than-half-of-sydney-suburbs-rents-climb-after-tax-changes/",
           "source": "realestate.com.au News",
           "published": "2026-08-14T19:00:00+00:00",
           "summary": "Exclusive figures reveal rents have surged across more than half of Sydney suburbs since landmark property tax reforms were announced in the federal budget.",
+          "why_it_matters": "Relevant to Sydney/NSW property market conditions if you're tracking prices or planning a move.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "A house for $110,000? This regional NSW cottage is heading to auction - Domain",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQclVQLUVSSzlHS3hsbUc4bm1PMVgxemo2VzJha3MtWC1RZ182X3JkVy03LUNfTU85UGx6aEdFdktkZFZ0Rm45ZUI3UTNzYVdndXRfTmFQN3RnU1ljTmFTLUhJbGZ2LUtWSjhJeW40ZmJ0TDdpN2dWY1NGcERPSlUwMlF5dGNtQTJpa195d1FSQ3Y3NGcwU3lScmlkal9LS3ZiMWdKU2N4SFNfdU9PbVU4dGhTdC1mVHdxeWFwQlQ1bDdPS1V1LVE?oc=5",
+          "source": "Domain News",
+          "published": "2026-08-15T08:41:33+00:00",
+          "summary": "",
           "why_it_matters": "Relevant to Sydney/NSW property market conditions if you're tracking prices or planning a move.",
           "region": null,
           "paywalled": false
@@ -779,26 +679,6 @@
           "paywalled": false
         },
         {
-          "title": "HCLTech, NetApp Expand Hybrid Cloud Pact to Speed Enterprise AI Adoption",
-          "url": "https://www.deccanchronicle.com/technology/hcltech-netapp-expand-partnership-for-hybrid-cloud-storage-as-a-service-to-accelerate-enterprise-ai-adoption-1979141",
-          "source": "Deccan Chronicle",
-          "published": "2026-08-14T10:43:54Z",
-          "summary": "It enables enterprises to scale storage, performance and data services on demand while supporting AI development, deployment and operations via HCLTech’s AI Factory suite of offerings.",
-          "why_it_matters": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "IBM partners with OpenAI to boost enterprise AI adoption",
-          "url": "https://www.newsbytesapp.com/news/science/ibm-partners-with-openai-bringing-ai-models-to-more-businesses/story",
-          "source": "NewsBytes",
-          "published": "2026-08-14T07:15:38Z",
-          "summary": "IBM has teamed up with OpenAI to integrate advanced AI models into enterprise solutions, leveraging IBM's global consulting network to expand corporate AI adoption.",
-          "why_it_matters": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
-          "region": null,
-          "paywalled": false
-        },
-        {
           "title": "Sify Launches Your Move Campaign: Placing Choice at the Center of Enterprise AI",
           "url": "https://www.hindustantimes.com/genesis/sify-launches-your-move-campaign-placing-choice-at-the-center-of-enterprise-ai-101786685934089.html",
           "source": "Hindustan Times",
@@ -809,11 +689,21 @@
           "paywalled": false
         },
         {
-          "title": "HCLTech, NetApp expand partnership to deliver hybrid cloud storage",
-          "url": "https://www.tribuneindia.com/news/business/hcltech-netapp-expand-partnership-to-deliver-hybrid-cloud-storage-as-a-service-for-enterprise-ai/",
-          "source": "The Tribune",
-          "published": "2026-08-14T05:49:04Z",
-          "summary": "HCLTech and NetApp expanded their partnership for hybrid cloud storage-as-a-service (STaaS) to accelerate enterprise AI adoption. The initiative is designed to assist organisations in scaling artificial intelligence alongside traditional enterprise data workloads.",
+          "title": "AI could make loans faster and banking smarter. But can customers trust the machines?",
+          "url": "https://www.cnbctv18.com/business/finance/digitalisation-to-ai-how-indian-banks-are-changing-way-they-operate-19968642.htm",
+          "source": "CNBC TV18",
+          "published": "2026-08-13T11:13:33Z",
+          "summary": "Indian banks are using AI to process loans, spot fraud and assess risk faster, but experts say human oversight, data privacy and explainable decisions will be crucial.",
+          "why_it_matters": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Nuvion receives SOC 2® Type I Report, strengthening enterprise-grade security and governance as it scales globally",
+          "url": "https://www.prnewswire.co.uk/news-releases/nuvion-receives-soc-2-type-i-report-strengthening-enterprise-grade-security-and-governance-as-it-scales-globally-302849970.html",
+          "source": "PR Newswire UK",
+          "published": "2026-08-13T09:00:00Z",
+          "summary": "/PRNewswire/ -- Nuvion, the AI-powered global banking and cross-border payments platform built on fiat and stablecoins for businesses and platforms, today...",
           "why_it_matters": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
           "region": null,
           "paywalled": false
@@ -848,6 +738,16 @@
           "paywalled": true
         },
         {
+          "title": "Barely profitable Yarra Valley jewel Oakridge could go ‘commercial’ - The Australian",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPN2dBbFppTHF0YmNsUkd2ai0tQ2N6QzRtZGxwUzAzaXhCZThRRnNOOFhZRGg2Ml9SRVU0djBXc1ZTSllYS1FMYXdXb1JKSXpFZlRJenEwY3F2UTdpX0ZudHhDQzJpTi04RHhxTDV5UTJuT0tyd3UyUEFwdHdDazlCMTFPaFNCQmI2VUNDd0VDTGVPMUE5ZVlHLVdEd3gtLXNRTmc3TFRWT1U4eDQtSEhYYzZvUmlpTVhCa2RNTmRaYjR6MGY1RVJxUDVJblRKanRBYXJKV2YyUklla1l6TmlHb013N2RJeHFQa3Q3VE9WX1ZkXy1I0gH6AUFVX3lxTFBtZjVab0FDWGczbkx2NWdVMEdkQnhqN250UWZCc2t0SUlmcEo3cEpOSWlualg5alZUQkFFeGppSUdKM1d3SUY4b0N6b2tZNVJWbExIMTVUSGxRSmtiSXdfZW5TZjViaXlZZUV1SHBpWnB1b0J0U1Q1eUljaDFrdEp4MHVweDBMVTNwNGNWVVVrVXFUeF9GWkJpc0R1V3NtWkl5MHB6YU5OVDJWbTVZODZ3MEM0UU02WHJPeGxKUDBib2VJMWJSUWFTSkNJbGMydWtnM2FsUEMzSGdXbGI3VzItWUxGcTN0OGZRM3lkVFVxV053TXNMR1N2UEE?oc=5",
+          "source": "The Australian",
+          "published": "2026-08-15T23:52:09+00:00",
+          "summary": "",
+          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
+          "region": null,
+          "paywalled": true
+        },
+        {
           "title": "Whistleblower wins ruling to attack big four’s secretive partner shield - The Australian",
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOQWdZRUE0ajU2NkZrMnJMM3BfbkEwWDFybFJLdG93aWJlblBldEJRaS1mUzhxb1ZlVXRJSzdKS1JuMzJ3VEJBVTVmMXA0NWVULVNwZlpHWjdKWV9Zd2VTUThFM1huTEF1aFVIWlhCblQ2T3lqVWU1T0MzejRwdmRwLXROUUVPX2NscTdpblJIeEZIR3NMME9qQWJGY3B0cGdUc1ZEdjM3NFgwT19rN0JlMHRrRFRqMnhULU04VXowaFF4VDlud1FXMGJXQjNJOWNZMmNvY0h1QmZ3TkM3U0N0VHNiZFpMYjYxYUVRamtjajhHZ2x6MWVsWlN5bEFWVG5fcFUyZNIBigJBVV95cUxQRUM0ZW96RTZlczZLTG5PeVpTaFhzZ2xRUl9WQ3VpWUFSZkNDTl9RcU8zOFByWGNXeUtoT2QySlEya01tRnNiT0dVd1c1RkxVSmJQVXYxYi05aUthcmtudVV5c092bEhmblJmRUFIX3Q3emttd3BHdHZHQTRjcnkwVmtOTG1DNVFEc3lseEoxNjUyclBqQnR3bzFGOVBQdnFKQVExNG4yY3htUUtXa3J6MGJFVlV6cERSNEU3bGFhVkEtRmxTbU5vYzJnci1vT3JjYmN0OTVvZmZPSFhTRnBDYjN2YWJUZGVkaHNqdXhfX3F6QlhFYURyTDM0alhtczM0RVJSaThFUExJdw?oc=5",
           "source": "The Australian",
@@ -863,26 +763,6 @@
           "source": "The Australian",
           "published": "2026-08-16T07:26:05+00:00",
           "summary": "ASX Small Caps Weekly Form Guide - The Australian The Australian",
-          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
-          "region": null,
-          "paywalled": true
-        },
-        {
-          "title": "Commercial Property | Business & Finance News - The Australian",
-          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB6TkJyVm1hVXRTVmFxUV9IRzBIMl91OTA2NXlLRERvQ2I3bktxTFBMLTl5aGtvS3VsMFN3VUwzSTc0a2tHT283WFllVldZRzI2blZaSWhjZjFCNHJSOWJZa0Zna2h6M3gtR1I2a2JfSUJNNm44b0RUXw?oc=5",
-          "source": "The Australian",
-          "published": "2026-08-16T07:24:46+00:00",
-          "summary": "",
-          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
-          "region": null,
-          "paywalled": true
-        },
-        {
-          "title": "First-home buyers fear lack of investors to catch housing knife - The Australian",
-          "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQLTFxZU1SWDRSU1FDOVZYMGdGQTc0WVpHLWdTQlVvOVp0Z0FZaDhETTlnUXhobHRMYzc0M3hMZXJLRmdqc29JWWUtdnd2blFvM1hRREpMRjc1Y3pGU04waHVEWml3RG01YzA0NFltN3hod3hydHc0dDQ5MXV2b2M3Tnh1b0tYNXNvcXAzcEpRLWhqb2hGSEtJU244THJ5NkEzbkxaa1ZxR0JYdUw1c2hSekxwc2FQcDZkWWFfYTBDUW81NjNRZ2kzaFhYalI5VDZScElHbFIzZE1UYTZQX053SlFBeEFfLXlMQmY4S0U3OE85Qy1aZGs3SXlqUGMxcGRYcWFjSG11TTkzNlhLM0NQcWpn0gGXAkFVX3lxTE8zWmZ0WXFBaWhIeWhVQ0xFTXR1N2J4RDVROEVkLWp6YnJ0X1EtQldMdDAzeHhtMWpGeUQtOWdZRFlYTG1XdWVmbDdjd0hNeXRYdEdXWU85TnVVbkJOLVBrY0ltcVJJZlAxSld2M1k2YU5OaDNIaXNMakw4aW9lSk9pcFl3TkNVVmR4NnRqaFl5S0lBUjVUbFEwQjl1LVRZMnlBY3VnWE5QTnEyRkM2T09nYzBOa0lHMnd6ZWo5Sk9mZTRfbXFlQ2JaZDczdWZkcVRnWUxYdnpUSGtaT3hpcXlmenFlanBWN25jNmJnMkdxR3RUdjd1d3VQS2s4dHhQcS1iYllsMFFCUU5xejcwY3ZwUmMweXVvTQ?oc=5",
-          "source": "The Australian",
-          "published": "2026-08-16T07:18:42+00:00",
-          "summary": "",
           "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
           "region": null,
           "paywalled": true

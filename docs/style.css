@@ -33,6 +33,9 @@
     --chip-active-text: #0b1220;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.35);
   }
+  .topic-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2393a0b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='5 7 10 12 15 7'/%3E%3C/svg%3E");
+  }
 }
 
 * { box-sizing: border-box; }
@@ -62,24 +65,33 @@ header.top {
 }
 
 .top-inner {
-  padding: 14px 0 10px 0;
+  padding: 14px 0 12px 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .top-inner h1 {
   font-size: 1.25rem;
   margin: 0;
   letter-spacing: -0.01em;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .meta-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.updated-row {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #updated {
@@ -93,31 +105,33 @@ header.top {
   background: var(--why-bg);
   border-radius: 8px;
   padding: 6px 10px;
-  margin: 6px 0 10px 0;
+  margin: 6px 0 2px 0;
   display: none;
 }
 #status-banner.show { display: block; }
 
-nav.topic-nav {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: none;
-}
-nav.topic-nav::-webkit-scrollbar { display: none; }
-
-nav.topic-nav a {
+.topic-select {
   flex: 0 0 auto;
-  text-decoration: none;
-  font-size: 0.8rem;
+  max-width: 46vw;
+  font: inherit;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text);
-  background: var(--chip-bg);
-  padding: 6px 12px;
-  border-radius: 999px;
-  white-space: nowrap;
+  background-color: var(--chip-bg);
   border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 28px 7px 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%235b6472' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='5 7 10 12 15 7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  text-overflow: ellipsis;
+}
+.topic-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 main {
@@ -128,7 +142,7 @@ main {
 
 section.topic {
   margin-top: 26px;
-  scroll-margin-top: 118px;
+  scroll-margin-top: 92px;
 }
 
 section.topic .topic-head {
@@ -233,6 +247,7 @@ section.topic .topic-sub {
 
 details.low-priority {
   margin-top: 26px;
+  scroll-margin-top: 92px;
 }
 details.low-priority > summary {
   cursor: pointer;

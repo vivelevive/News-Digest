@@ -19,6 +19,10 @@ Design notes (see README.md for the full picture):
 - GNews (used only for the AI-in-financial-services category) is capped at a
   small, fixed number of queries per run to comfortably stay under the free
   tier's ~100 requests/day limit even with manual re-runs.
+- Each category is capped at MAX_ITEMS_PER_CATEGORY (5). Within a category,
+  items are ranked by relevance_score() -- recency first, with a light
+  rule-based "impact keyword" signal as a tiebreaker -- not just raw
+  published-date order.
 """
 
 import json
@@ -40,8 +44,7 @@ OUTPUT_PATH = os.path.join(ROOT, "docs", "data", "digest.json")
 
 USER_AGENT = "Mozilla/5.0 (compatible; PersonalNewsDigestBot/1.0; +https://github.com/)"
 REQUEST_TIMEOUT = 15
-MAX_ITEMS_PER_CATEGORY = 6
-MAX_ITEMS_LOW_PRIORITY = 4
+MAX_ITEMS_PER_CATEGORY = 5
 GNEWS_MAX_PER_QUERY = 6
 GNEWS_TIMEOUT = 15
 
@@ -98,6 +101,43 @@ def is_junk_title(title):
     if not t:
         return True
     return any(p.search(t) for p in JUNK_TITLE_PATTERNS)
+
+
+# Words that tend to mark a story as a bigger deal than routine coverage --
+# used as a (rule-based) proxy for "relevance / interest" when picking which
+# 5 items per category make the cut. Not a substitute for real editorial
+# judgement, just a deterministic tiebreaker alongside recency.
+IMPACT_KEYWORDS = [
+    "record", "surge", "surges", "plunge", "plunges", "soar", "soars", "crash", "crashes",
+    "billion", "collapse", "warns", "warning", "fine", "fined", "penalty", "penalties",
+    "acquisition", "acquires", "merger", "takeover", "buyout", "ceo", "resigns", "resignation",
+    "steps down", "ipo", "regulator", "lawsuit", "sues", "investigation", "probe",
+    "breakthrough", "unveils", "launches", "cuts rates", "raises rates", "rate hike",
+    "rate cut", "layoffs", "job cuts", "profit", "loss", "earnings", "guidance",
+    "downgrade", "upgrade", "ban", "banned", "sanctions", "exclusive", "deal",
+]
+
+
+def relevance_score(item, now):
+    """Higher is better. Blends recency (dominant factor -- this is a *daily*
+    digest) with a light keyword-based "impact" signal so that, among
+    similarly-fresh stories, the ones that read as more consequential rank
+    first."""
+    published = item.get("published")
+    if published:
+        try:
+            age_hours = max(0.0, (now - dateparser.parse(published)).total_seconds() / 3600)
+        except (ValueError, TypeError, OverflowError):
+            age_hours = 999.0
+    else:
+        age_hours = 999.0  # undated items (e.g. Nikkei Asia) rank behind dated ones
+    recency_score = 1.0 / (1.0 + age_hours / 24.0)  # ~1.0 fresh -> ~0.2 at a week old
+
+    haystack = f"{item['title']} {item.get('raw_summary', '')}".lower()
+    impact_hits = sum(1 for kw in IMPACT_KEYWORDS if kw in haystack)
+    impact_score = min(impact_hits, 4) * 0.12  # capped so recency still dominates
+
+    return recency_score + impact_score
 
 
 def log(msg):
@@ -278,12 +318,12 @@ def dedupe(items):
     return out
 
 
-def finalize_items(raw_items, category_id, cap):
+def finalize_items(raw_items, category_id, cap, now):
     items = dedupe(raw_items)
     items = [i for i in items if not is_junk_title(i["title"])]
     items = [i for i in items if not contains_excluded_keyword(i["title"], i.get("raw_summary", ""))]
-    # Most recent first; items with no parseable date sort last.
-    items.sort(key=lambda i: i["published"] or "", reverse=True)
+    # Blend of recency + a light "impact" keyword signal -- see relevance_score().
+    items.sort(key=lambda i: relevance_score(i, now), reverse=True)
     items = items[:cap]
 
     result = []
@@ -309,10 +349,11 @@ def build():
     raw_pool = {}  # category_id -> list of raw items (pre-filter), for "derived" categories
     output_categories = []
     gnews_key = os.environ.get("GNEWS_API_KEY", "").strip()
+    now = datetime.now(timezone.utc)
 
     for cat in config["categories"]:
         cat_id = cat["id"]
-        cap = MAX_ITEMS_LOW_PRIORITY if cat.get("collapsedByDefault") else MAX_ITEMS_PER_CATEGORY
+        cap = MAX_ITEMS_PER_CATEGORY
 
         if cat.get("derivedFrom"):
             pool = []
@@ -320,7 +361,7 @@ def build():
                 pool.extend(raw_pool.get(src_cat, []))
             keywords = cat.get("keywords", [])
             filtered = [i for i in pool if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(filtered, cat_id, cap)
+            items = finalize_items(filtered, cat_id, cap, now)
 
         elif cat.get("type") == "gnews":
             if not gnews_key:
@@ -331,7 +372,7 @@ def build():
                 for query in cat.get("queries", []):
                     raw.extend(fetch_gnews(query, gnews_key, warnings))
                     time.sleep(1)  # be polite to the free-tier API
-                items = finalize_items(raw, cat_id, cap)
+                items = finalize_items(raw, cat_id, cap, now)
 
         else:
             raw = []
@@ -344,7 +385,7 @@ def build():
             keywords = cat.get("keywords")
             if keywords:
                 raw = [i for i in raw if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(raw, cat_id, cap)
+            items = finalize_items(raw, cat_id, cap, now)
 
         output_categories.append({
             "id": cat_id,
