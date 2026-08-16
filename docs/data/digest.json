@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T09:08:26.056187+00:00",
+  "generated_at": "2026-08-16T09:18:58.575813+00:00",
   "warnings": [],
   "categories": [
     {
@@ -631,10 +631,20 @@
       "collapsedByDefault": false,
       "items": [
         {
+          "title": "Ukrainian drones strike Moscow region, killing one - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNYUVQMGdnUEljNGo4eDhSbHFoSUtDZ2FVLU5hTHNmZXUwMFVDTTdneTR3S2owc1pSZjBtcHNtVkZKU25oLXlNbWxENHVhM2F1ZUtnUVVicEMzai1MMVgyZk5JLVJPRjRDUklLc21zcjJycVM5endpS2plUjRHS3FhMmFIa29MUlRjRzRpNDlTdnRLS0JuTUE?oc=5",
+          "source": "Reuters World",
+          "published": "2026-08-16T08:13:40+00:00",
+          "summary": "",
+          "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
+          "region": null,
+          "paywalled": false
+        },
+        {
           "title": "Twelve killed and at least 10 injured in Polish bus crash in Hungary - Reuters",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNZ2puckZxdHQ1aDQ2YmsxMXpuTHd6M0ZkMVhzOFNjXzJ3aTEzeHN6OEMyMkRCWTU2Y21MUUR2YlFjUlJmSG1Eb0JiOF9sVkdxY1dLMTBUY2xiUnNQdXlCRkFSeFNsdUJ0REd4NGxINnRZMDhyZWoxMzRMWlNTSWExd0xGT1pLWWJUcDQ5WEJPYVlBdDQ2aE0wazZRMzlrdw?oc=5",
           "source": "Reuters World",
-          "published": "2026-08-16T06:59:44+00:00",
+          "published": "2026-08-16T06:07:00+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
@@ -675,16 +685,6 @@
           "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRDQ2bnhPSnIySk54TjdqYmlQeVd3eEkxSU00ckF6OHZjUkI1S3ZUQm9VRUFvakFsajBqcjFVWlE5cTZsNjFNdUozMGlxQ0tvWTQ2Unl2SjF4UlJpMVlHSFdxOV9xa3hXcWFqMFloSGNFNHVSTVM2UUItcDdhaUZ5dzRTa3Z0eEpPdV9PUVBhV3Z3WVhGZ1NQNjd5LVA5RWNOTjhXV3IxOGJEanUzM1BwcFNycFczNDdMWUEzYXhDQkk?oc=5",
           "source": "Reuters World",
           "published": "2026-08-16T01:33:00+00:00",
-          "summary": "",
-          "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
-          "region": null,
-          "paywalled": false
-        },
-        {
-          "title": "Democrats pick South Carolina as first 2028 primary state​​ - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQcUdUWnZta0dqWnVmdERxVEg1ay1leG1IZWQyUVJ2U1Y2cVJSNjg2X1BZWHRBOV9ZemJnT1pVeGpoRUt4ekFaTER1NUhVcEtObFd2X1doR2x2SnpGaDNGTEFOaUNDdUpZOVJPQ1Z5Q1d0YkQ3YlE0NGl4a0xrZ2VrdjBOdlpfdnN3aEsxZHJCcFd5M1lOZHRmWnVrd0NiaUYt?oc=5",
-          "source": "Reuters World",
-          "published": "2026-08-15T20:07:45+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
@@ -828,6 +828,16 @@
       "collapsedByDefault": false,
       "items": [
         {
+          "title": "China opens first regular cargo route to Europe through Arctic - The Australian",
+          "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOaFo2SHdDamVyWC1sLXQ3OG1IZ2lzQXZOUnpJRGRrWFlRc3c4VmQtOVdUbTdHYVJYMV85MWRCcDlBNzZwYnZVYTVDa1J0d1loM2FMN3NLa0d5SzdsakNBMTRETWpuLUFjVGh5YzVOMkM4c1gxZ000ajJyTXZmZzRJSXU1V2RfcmlHZVRIV0VzYXcyWWlzM0ZUdUhNYWtNS01vWVByVmtUM3AzYmE4bm1sdGRKUHZqcnRIMlV4X3V4aDRBMVhQSmtBWHlKeV9UaXlESzlsdUxhYjR2aTNDOXE0SVNNeWh0LXoxYWR1X0QycW81c1EyNmplTHpyMlhpYkZfeGfSAYcCQVVfeXFMTXZCODd5TXQ3YkdoMS1MeElhUUNBSzBRdmhSWXQ1OEFZLThTSWRjanhvdkFyYWF2amxGM2c0WGdPNzZhU1NIR1VFcEw4WEYtMEd0Sy11VjdlUTNIWW4xcGs1YjdMazA3cmJVOG5iaFliUkpIMUlGQkN6Y2FpcGN4Wk1fb3J4d1Fkd09HUXI5TjhOMUxLNXE2TUxEOTlzd3NqTlhOUm54WHlva0ZYZFZBejhJWEtucnp3TnVsSGRfbjd1cHZleXBMcHhLUUtPdkhPQm5lSkVTc1ZWYnVpNkpONGRzYXhSRWdrX05taW9yeHR1X09jUFVpQThlUmxjeGdvU1dQT2hrZWs?oc=5",
+          "source": "The Australian",
+          "published": "2026-08-16T08:54:44+00:00",
+          "summary": "",
+          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
+          "region": null,
+          "paywalled": true
+        },
+        {
           "title": "Donald Trump dismisses concerns about US sailors’ conditions - The Australian",
           "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOUjJxTS1BTjhoak42cnZKWFg4cHI2anliVmo5ZFFBbTNRdFpBbDJ4NHJ0N1Q2ZkdFSzd2Z3I0VXl5OXZqeUR4YVJQTzRQWEpxbUlQanJSS1VYVmFmblhpREtibDVmRkk3S0JyM3VzVFJTaUY2MjdxVE1kRnh1VWZCcHJCNkJlR2w3Yjdra2kzcWZHcUtSUlo3TTBYVFRIVEdYNVk0RkZlLTJRWU5McDlaeWQ5SmktbER6c3poNU91SlAyckdPemVtbU9RTi1RNDFhZ1p6WnBBTEJ6bFBnMWpIU3pzQm9iaDNsUmxGTk1rbXE2bmUycERnT0FYMUlTZw?oc=5",
           "source": "The Australian",
@@ -848,6 +858,16 @@
           "paywalled": true
         },
         {
+          "title": "ASX Small Caps Weekly Form Guide - The Australian - The Australian",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPWFc3M012UjRySWxHVkpjOVFqdFRHZlRGYjZ5V0JudUc1QUE0UEQ0cGE2eEZIa1pPU3N1UHhDWUxuMFdZVF9IQU9OR0RTNVVrWTZNS0lTYVVNd1ZfbnZKaG91S3ZJUW93eFhrOWQ0aTh3R2V0M1k2Wm1OMWphb2FEY1NjaTM4c044MzZ1b0Fmbkk2RkN0djlDNFd3SFYxYUVFQWo2NXNNc3BaSi1rTVZubmFvN1p6V0pHUlZMZjVvQjBabnZIejBKR1BRZHpxdw?oc=5",
+          "source": "The Australian",
+          "published": "2026-08-16T07:26:05+00:00",
+          "summary": "ASX Small Caps Weekly Form Guide - The Australian The Australian",
+          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
+          "region": null,
+          "paywalled": true
+        },
+        {
           "title": "Commercial Property | Business & Finance News - The Australian",
           "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFB6TkJyVm1hVXRTVmFxUV9IRzBIMl91OTA2NXlLRERvQ2I3bktxTFBMLTl5aGtvS3VsMFN3VUwzSTc0a2tHT283WFllVldZRzI2blZaSWhjZjFCNHJSOWJZa0Zna2h6M3gtR1I2a2JfSUJNNm44b0RUXw?oc=5",
           "source": "The Australian",
@@ -862,26 +882,6 @@
           "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQLTFxZU1SWDRSU1FDOVZYMGdGQTc0WVpHLWdTQlVvOVp0Z0FZaDhETTlnUXhobHRMYzc0M3hMZXJLRmdqc29JWWUtdnd2blFvM1hRREpMRjc1Y3pGU04waHVEWml3RG01YzA0NFltN3hod3hydHc0dDQ5MXV2b2M3Tnh1b0tYNXNvcXAzcEpRLWhqb2hGSEtJU244THJ5NkEzbkxaa1ZxR0JYdUw1c2hSekxwc2FQcDZkWWFfYTBDUW81NjNRZ2kzaFhYalI5VDZScElHbFIzZE1UYTZQX053SlFBeEFfLXlMQmY4S0U3OE85Qy1aZGs3SXlqUGMxcGRYcWFjSG11TTkzNlhLM0NQcWpn0gGXAkFVX3lxTE8zWmZ0WXFBaWhIeWhVQ0xFTXR1N2J4RDVROEVkLWp6YnJ0X1EtQldMdDAzeHhtMWpGeUQtOWdZRFlYTG1XdWVmbDdjd0hNeXRYdEdXWU85TnVVbkJOLVBrY0ltcVJJZlAxSld2M1k2YU5OaDNIaXNMakw4aW9lSk9pcFl3TkNVVmR4NnRqaFl5S0lBUjVUbFEwQjl1LVRZMnlBY3VnWE5QTnEyRkM2T09nYzBOa0lHMnd6ZWo5Sk9mZTRfbXFlQ2JaZDczdWZkcVRnWUxYdnpUSGtaT3hpcXlmenFlanBWN25jNmJnMkdxR3RUdjd1d3VQS2s4dHhQcS1iYllsMFFCUU5xejcwY3ZwUmMweXVvTQ?oc=5",
           "source": "The Australian",
           "published": "2026-08-16T07:18:42+00:00",
-          "summary": "",
-          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
-          "region": null,
-          "paywalled": true
-        },
-        {
-          "title": "Investors brace for the ASX reporting season deluge - The Australian",
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPY3FKNWNTS21ZSTZqanl2U1dZeHJQdW9QZHFXUW4tLWpDVHBZanZlQkgwNy1GRmxjSUpLY0laN1BrNFJuejJFVkFZTzlJMzVRNVhZRVp0YWs1YlFCTjdFbmtWbWxMdnlIbERYT1lvUUtBTDRkb2tPVTFlZi1PNTZuTld2c0I2dzBHbFNZUnhwMThLY1NVNFlnTHEwUnFPRWxMZElodnBFRkFpR2xZSmctN2xfWEVrYV9zZ1FpRERKVEhndGJGU0RKUmtia09wMUFwcDI2bjBGbXJyTlhQWEdGV25PVi1Db3NNM3fSAe8BQVVfeXFMTS1wZmtqc3h6TnktRHNvMHMteEVUNng4aFpZVVFyem9yeEtRQ2VmXy1TWEpWVmNISHJFbm4yQXFFR05vVnhyOHNBYzVRd2kwUGI5cEVMbEFHZFNfLUNNUGt0X0dxU21ENGZsVjNvV2ZKNXFVcnRsTVllSEN6bTlobFZLTVRrRzNDdjNXOTJnNk9BaFhHSS02NzVtNlVRa0ZCQ2l5SU1vZllabzlUOFEwQ3FvMFhQREpQUUlTVFVsWWN0cjAyeGw3ejRSZWZPLU9fdHRQZC0tVlZVLUcyUklaWUU4R093bUVzUE1WQTBsX0k?oc=5",
-          "source": "The Australian",
-          "published": "2026-08-16T06:48:05+00:00",
-          "summary": "",
-          "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
-          "region": null,
-          "paywalled": true
-        },
-        {
-          "title": "Board whisperer says it’s time to explain long audit relationships - The Australian",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNeVBTMURmQ2R2N2xockFhRkRKNWw5QkUyNXZwU1FLcl9tNkRzNDRxUnVtckZoQ2tUYUFaMUhka2ZHb0lTVDhXRk42VUY1VXVOTXRQcnJOamsxcEZmMldOOGl4bjV1dmlWU0xjZ2JnQUdRZXJoLVYxWDdIZzV3MGZOZXQyRGE5NjhxejNfQmlSWFhXWERYSjNERE5haFpvYUUtUU5xVzNnMXIxb0ZVYkZKQXBlalFMRWZLeEUtMllHQ2ZkUklwUWVDR1MzeVJrMEcxYUpXTNIB2gFBVV95cUxOeDIwUHRSel9UMFNwUFA5WjVrMktXUDNoSjVJVkhRWnJwVDJqaWN3bXFncXhXUDEwR1E5clI5bHpBWjJobzdZUWJhdnZxdTNvV2hZNm5OSXg1UWRmUWYwdnUxR2pRVVRQT0steFhPa2RfNGlwLXkxRkJVQzFYUnVQaEtVNkxOMllUQk1RSFBqeVM1VnFLQmdXWVRSMmJBLUl6TF84WmdqUU1lUnoxZUFvMHN6WHV4UHNxLTBpakxxdEpsYksyRGh5MW1HejJzVjdfU0pGR1VQZTFCUQ?oc=5",
-          "source": "The Australian",
-          "published": "2026-08-16T06:48:05+00:00",
           "summary": "",
           "why_it_matters": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
           "region": null,
