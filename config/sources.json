@@ -1,0 +1,137 @@
+{
+  "_notes": "Feed URLs verified live 2026-08-16. Reuters, AFR, ASIC, and The Australian have no working native RSS (discontinued years ago) -- substituted with site-filtered Google News RSS, which needs no API key. Bloomberg's feeds moved host (feeds.bloomberg.com -> www.bloomberg.com/feeds) but still work. Avoid feeds.a.dj.com for WSJ -- it parses fine but silently serves stale (~18mo old) content; feeds.content.dowjones.io is the live one. Nikkei Asia's feed has no pubDate field at all, so its items sort after dated items and aren't recency-filterable.",
+  "categories": [
+    {
+      "id": "self-development",
+      "title": "Self-Development & Thought Leadership",
+      "navLabel": "Self-Dev",
+      "sources": [
+        { "name": "Harvard Business Review", "url": "https://feeds.feedburner.com/harvardbusiness" },
+        { "name": "McKinsey Insights", "url": "https://www.mckinsey.com/insights/rss" }
+      ]
+    },
+    {
+      "id": "tech-personal",
+      "title": "Technology (Personal Use)",
+      "navLabel": "Tech",
+      "sources": [
+        { "name": "TechCrunch", "url": "https://techcrunch.com/feed/" },
+        { "name": "The Verge", "url": "https://www.theverge.com/rss/index.xml" }
+      ]
+    },
+    {
+      "id": "tech-us",
+      "title": "Major Tech Trends — US",
+      "navLabel": "Tech US",
+      "subtitle": "TechCrunch · The Verge",
+      "sources": [
+        { "name": "TechCrunch", "url": "https://techcrunch.com/feed/", "region": "US" },
+        { "name": "The Verge", "url": "https://www.theverge.com/rss/index.xml", "region": "US" }
+      ]
+    },
+    {
+      "id": "tech-asia",
+      "title": "Major Tech Trends — Asia",
+      "navLabel": "Tech Asia",
+      "subtitle": "Nikkei Asia · SCMP Tech",
+      "sources": [
+        { "name": "Nikkei Asia", "url": "https://asia.nikkei.com/rss/feed/nar", "region": "Asia" },
+        { "name": "South China Morning Post (Tech)", "url": "https://www.scmp.com/rss/91/feed/", "region": "Asia" }
+      ]
+    },
+    {
+      "id": "tech-europe",
+      "title": "Major Tech Trends — Europe",
+      "navLabel": "Tech EU",
+      "subtitle": "Reuters Technology (via Google News, native RSS discontinued)",
+      "sources": [
+        { "name": "Reuters Technology", "url": "https://news.google.com/rss/search?q=site%3Areuters.com/technology%20when%3A4d&hl=en-US&gl=US&ceid=US:en", "region": "Europe" }
+      ]
+    },
+    {
+      "id": "tech-australia",
+      "title": "Major Tech Trends — Australia",
+      "navLabel": "Tech AU",
+      "subtitle": "ZDNet · iTnews",
+      "sources": [
+        { "name": "ZDNet", "url": "https://www.zdnet.com/news/rss.xml", "region": "Australia" },
+        { "name": "iTnews", "url": "https://www.itnews.com.au/RSS/rss.ashx", "region": "Australia" }
+      ]
+    },
+    {
+      "id": "finance",
+      "title": "Finance News",
+      "navLabel": "Finance",
+      "sources": [
+        { "name": "Reuters Business", "url": "https://news.google.com/rss/search?q=site%3Areuters.com/business%20when%3A3d&hl=en-US&gl=US&ceid=US:en" },
+        { "name": "Australian Financial Review", "url": "https://news.google.com/rss/search?q=%28site%3Aafr.com/markets%20OR%20site%3Aafr.com/companies%20OR%20site%3Aafr.com/policy%20OR%20site%3Aafr.com/economy%20OR%20site%3Aafr.com/technology%29%20-cricket%20-AFL%20-NRL%20-rugby%20when%3A2d&hl=en-AU&gl=AU&ceid=AU:en", "paywalled": true },
+        { "name": "Bloomberg Markets", "url": "https://www.bloomberg.com/feeds/markets/news.rss" },
+        { "name": "RBA Media Releases", "url": "https://www.rba.gov.au/rss/rss-cb-media-releases.xml" }
+      ]
+    },
+    {
+      "id": "stock-index",
+      "title": "Stock Index Movements & Analyst Commentary",
+      "navLabel": "Markets",
+      "subtitle": "Filtered from Finance News for ASX 200 / S&P 500 + analyst rationale",
+      "derivedFrom": ["finance"],
+      "keywords": ["asx 200", "asx200", "s&p 500", "s&p500", "index", "shares", "stocks", "wall street", "analyst", "rally", "selloff", "sell-off", "close higher", "close lower", "points", "market close"]
+    },
+    {
+      "id": "regulatory",
+      "title": "Regulatory & Compliance",
+      "navLabel": "Regulatory",
+      "sources": [
+        { "name": "APRA", "url": "https://www.apra.gov.au/rss.xml" },
+        { "name": "ASIC", "url": "https://news.google.com/rss/search?q=site%3Aasic.gov.au/about-asic/news-centre%20when%3A10d&hl=en-AU&gl=AU&ceid=AU:en" }
+      ]
+    },
+    {
+      "id": "ma-deals",
+      "title": "M&A, Deals & Geopolitics",
+      "navLabel": "M&A",
+      "subtitle": "Deals, corporate moves, geopolitics affecting markets",
+      "sources": [
+        { "name": "Reuters Deals", "url": "https://news.google.com/rss/search?q=site%3Areuters.com%20%28merger%20OR%20acquisition%20OR%20takeover%20OR%20buyout%29%20when%3A3d&hl=en-US&gl=US&ceid=US:en" },
+        { "name": "Reuters World", "url": "https://news.google.com/rss/search?q=site%3Areuters.com/world%20when%3A2d&hl=en-US&gl=US&ceid=US:en" }
+      ]
+    },
+    {
+      "id": "property",
+      "title": "Sydney/NSW Property Market",
+      "navLabel": "Property",
+      "keywords": ["sydney", "nsw", "new south wales"],
+      "sources": [
+        { "name": "realestate.com.au News", "url": "https://www.realestate.com.au/news/feed/" },
+        { "name": "Domain News", "url": "https://news.google.com/rss/search?q=site%3Adomain.com.au/news%20%28Sydney%20OR%20NSW%29%20when%3A5d&hl=en-AU&gl=AU&ceid=AU:en" }
+      ]
+    },
+    {
+      "id": "ai-finance",
+      "title": "AI in Financial Services",
+      "navLabel": "AI/Fin",
+      "subtitle": "AI adoption in banking and enterprise, via GNews",
+      "type": "gnews",
+      "queries": ["AI banking", "AI financial services", "enterprise AI adoption"]
+    },
+    {
+      "id": "paywalled",
+      "title": "The Australian / WSJ",
+      "navLabel": "AU/WSJ",
+      "subtitle": "Headline & snippet only — full article behind your subscription",
+      "sources": [
+        { "name": "The Australian", "url": "https://news.google.com/rss/search?q=site%3Atheaustralian.com.au/business%20when%3A2d&hl=en-AU&gl=AU&ceid=AU:en", "paywalled": true },
+        { "name": "Wall Street Journal", "url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain", "paywalled": true }
+      ]
+    },
+    {
+      "id": "esg",
+      "title": "ESG & Sustainable Finance",
+      "navLabel": "ESG",
+      "subtitle": "Headline-level only — lowest priority",
+      "collapsedByDefault": true,
+      "derivedFrom": ["finance", "regulatory", "ma-deals"],
+      "keywords": ["esg", "sustainab", "climate finance", "green bond", "net zero", "carbon", "emissions trading", "impact investing", "renewable"]
+    }
+  ]
+}
