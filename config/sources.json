@@ -1,5 +1,5 @@
 {
-  "_notes": "Feed URLs verified live 2026-08-16. Reuters, AFR, ASIC, and The Australian have no working native RSS (discontinued years ago) -- substituted with site-filtered Google News RSS, which needs no API key. Bloomberg's feeds moved host (feeds.bloomberg.com -> www.bloomberg.com/feeds) but still work. Avoid feeds.a.dj.com for WSJ -- it parses fine but silently serves stale (~18mo old) content; feeds.content.dowjones.io is the live one. Nikkei Asia's feed has no pubDate field at all, so its items sort after dated items and aren't recency-filterable.",
+  "_notes": "Feed URLs verified live 2026-08-16. Reuters, AFR, ASIC, and The Australian have no working native RSS (discontinued years ago) -- substituted with site-filtered Google News RSS, which needs no API key. Bloomberg's feeds moved host (feeds.bloomberg.com -> www.bloomberg.com/feeds) but still work. Avoid feeds.a.dj.com for WSJ -- it parses fine but silently serves stale (~18mo old) content; feeds.content.dowjones.io is the live one. Nikkei Asia's feed has no pubDate field at all, so its items sort after dated items and aren't recency-filterable. WSJ is a source, not its own category -- its Markets feed lives under 'finance' (and naturally flows into 'stock-index' too, since that category is a keyword-filtered view of finance's raw pool). Every category draws from a shared global dedup, so a story already picked for an earlier category never repeats in a later one.",
   "categories": [
     {
       "id": "self-development",
@@ -36,7 +36,7 @@
       "subtitle": "Nikkei Asia · SCMP Tech",
       "sources": [
         { "name": "Nikkei Asia", "url": "https://asia.nikkei.com/rss/feed/nar", "region": "Asia" },
-        { "name": "South China Morning Post (Tech)", "url": "https://www.scmp.com/rss/91/feed/", "region": "Asia" }
+        { "name": "South China Morning Post (Tech)", "url": "https://www.scmp.com/rss/36/feed/", "region": "Asia" }
       ]
     },
     {
@@ -66,7 +66,8 @@
         { "name": "Reuters Business", "url": "https://news.google.com/rss/search?q=site%3Areuters.com/business%20when%3A3d&hl=en-US&gl=US&ceid=US:en" },
         { "name": "Australian Financial Review", "url": "https://news.google.com/rss/search?q=%28site%3Aafr.com/markets%20OR%20site%3Aafr.com/companies%20OR%20site%3Aafr.com/policy%20OR%20site%3Aafr.com/economy%20OR%20site%3Aafr.com/technology%29%20-cricket%20-AFL%20-NRL%20-rugby%20when%3A2d&hl=en-AU&gl=AU&ceid=AU:en", "paywalled": true },
         { "name": "Bloomberg Markets", "url": "https://www.bloomberg.com/feeds/markets/news.rss" },
-        { "name": "RBA Media Releases", "url": "https://www.rba.gov.au/rss/rss-cb-media-releases.xml" }
+        { "name": "RBA Media Releases", "url": "https://www.rba.gov.au/rss/rss-cb-media-releases.xml" },
+        { "name": "Wall Street Journal", "url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain", "paywalled": true }
       ]
     },
     {
@@ -115,13 +116,12 @@
       "queries": ["AI banking", "AI financial services", "enterprise AI adoption"]
     },
     {
-      "id": "paywalled",
-      "title": "The Australian / WSJ",
-      "navLabel": "AU/WSJ",
+      "id": "the-australian",
+      "title": "The Australian",
+      "navLabel": "AU News",
       "subtitle": "Headline & snippet only — full article behind your subscription",
       "sources": [
-        { "name": "The Australian", "url": "https://news.google.com/rss/search?q=site%3Atheaustralian.com.au/business%20when%3A2d&hl=en-AU&gl=AU&ceid=AU:en", "paywalled": true },
-        { "name": "Wall Street Journal", "url": "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain", "paywalled": true }
+        { "name": "The Australian", "url": "https://news.google.com/rss/search?q=site%3Atheaustralian.com.au/business%20when%3A2d&hl=en-AU&gl=AU&ceid=AU:en", "paywalled": true }
       ]
     },
     {

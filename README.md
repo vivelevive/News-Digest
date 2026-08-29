@@ -19,10 +19,20 @@ docs/                                -- the static dashboard (GitHub Pages root)
   data/digest.json                   -- generated daily; committed back to the repo by the Action
 ```
 
-Summaries are **extractive** (cleaned/trimmed RSS description, capped at 5
-sentences) and "why it matters" is a short **rule-based** template per topic
-category -- there's no paid AI summarization step, to stay within the
-free-tier-only constraint.
+Each card shows a concise **Summary** (extractive -- cleaned/trimmed RSS
+description, capped at 2 sentences) and a **Why it matters** line (a short
+rule-based template per topic category). There's no paid AI summarization
+step, to stay within the free-tier-only constraint.
+
+The home page opens with **"Today in Brief"**: the single top-ranked story
+from each topic (13 headlines with a one-line takeaway each), meant to be
+readable in under 5 minutes. The full per-category sections with all 5 items
+each follow underneath, reachable by scrolling or via the topic dropdown.
+
+A story is only ever shown **once** across the whole digest, even when two
+categories share a source (e.g. Technology (Personal Use) and Major Tech
+Trends -- US both read TechCrunch/The Verge) -- see the global dedup notes
+in `scripts/build_digest.py`.
 
 ## One-time setup
 
@@ -59,6 +69,12 @@ Edit `config/sources.json`. Each category is either:
 
 Excluded topics (fitness/health, cybersecurity) are filtered globally via the
 `EXCLUDE_KEYWORDS` list in `scripts/build_digest.py`, regardless of source.
+
+Note that WSJ is configured as a *source* (its Markets feed lives inside the
+`finance` category, flagged `paywalled: true`), not its own category -- it
+naturally flows into Stock Index Movements too, since that's a keyword
+filter over the same finance pool. `the-australian` is the only remaining
+dedicated paywalled-outlet category.
 
 ## Local testing
 

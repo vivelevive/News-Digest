@@ -7,9 +7,9 @@ Design notes (see README.md for the full picture):
 - Every network call is wrapped so a single dead feed or API hiccup can never
   crash the whole run -- it's logged as a warning and the run continues with
   whatever sources succeeded.
-- Summaries are EXTRACTIVE (trimmed/cleaned RSS description, capped at 5
-  sentences) and "why it matters" is a small RULE-BASED template keyed by
-  topic category. No paid AI API is called, per the free-tier-only
+- Summaries are EXTRACTIVE (trimmed/cleaned RSS description, capped at
+  MAX_SUMMARY_SENTENCES) and "why it matters" is a small RULE-BASED template
+  keyed by topic category. No paid AI API is called, per the free-tier-only
   constraint.
 - Global exclude filters drop fitness/health and cybersecurity stories from
   every category, even if a source's RSS mixes them in.
@@ -23,6 +23,15 @@ Design notes (see README.md for the full picture):
   items are ranked by relevance_score() -- recency first, with a light
   rule-based "impact keyword" signal as a tiebreaker -- not just raw
   published-date order.
+- A story is only ever shown ONCE across the whole digest. Categories are
+  processed in config order and each claims its picks from a global
+  seen-URL/seen-title set (see `claimed` in build()); a later category that
+  shares a source with an earlier one (e.g. Technology (Personal Use) and
+  Major Tech Trends -- US both read TechCrunch/The Verge) simply gets the
+  next-best distinct stories instead of repeating the first category's picks.
+- The top-level "brief" array is a ~5-minute-read digest-of-the-digest: the
+  single top-ranked story from each non-collapsed category, for the home
+  page. Full per-category sections still follow underneath.
 """
 
 import json
@@ -45,6 +54,7 @@ OUTPUT_PATH = os.path.join(ROOT, "docs", "data", "digest.json")
 USER_AGENT = "Mozilla/5.0 (compatible; PersonalNewsDigestBot/1.0; +https://github.com/)"
 REQUEST_TIMEOUT = 15
 MAX_ITEMS_PER_CATEGORY = 5
+MAX_SUMMARY_SENTENCES = 2  # concise, exec-level -- not a full extractive dump
 GNEWS_MAX_PER_QUERY = 6
 GNEWS_TIMEOUT = 15
 
@@ -77,7 +87,7 @@ WHY_IT_MATTERS = {
     "property": "Relevant to Sydney/NSW property market conditions if you're tracking prices or planning a move.",
     "ai-finance": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
     "esg": "Brief ESG/sustainable-finance headline for awareness -- lowest priority, headline only.",
-    "paywalled": "Big-picture headline from a paywalled outlet -- follow through on your own subscription to read in full.",
+    "the-australian": "Big-picture Australian headline -- follow through on your own subscription to read in full.",
 }
 
 SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9\"'])")
@@ -118,6 +128,22 @@ IMPACT_KEYWORDS = [
 ]
 
 
+# Shopping-deal roundups and personal-blog listicles ("This $14 cable is my
+# secret to...", "Best early Labor Day deals") are common filler on some
+# feeds (ZDNet in particular) but aren't "trends" news -- pushed down rather
+# than hard-excluded, so a category still has something to show if that's
+# all a feed returned on a given day.
+LOW_VALUE_PATTERNS = [
+    re.compile(r"\bdeals?\b", re.IGNORECASE),
+    re.compile(r"%\s?off", re.IGNORECASE),
+    re.compile(r"\bcoupon\b", re.IGNORECASE),
+    re.compile(r"\bmy secret\b", re.IGNORECASE),
+    re.compile(r"here.?s how", re.IGNORECASE),
+    re.compile(r"^how i\b", re.IGNORECASE),
+    re.compile(r"\bbuying guide\b", re.IGNORECASE),
+]
+
+
 def relevance_score(item, now):
     """Higher is better. Blends recency (dominant factor -- this is a *daily*
     digest) with a light keyword-based "impact" signal so that, among
@@ -137,7 +163,9 @@ def relevance_score(item, now):
     impact_hits = sum(1 for kw in IMPACT_KEYWORDS if kw in haystack)
     impact_score = min(impact_hits, 4) * 0.12  # capped so recency still dominates
 
-    return recency_score + impact_score
+    low_value_penalty = 0.6 if any(p.search(item["title"]) for p in LOW_VALUE_PATTERNS) else 0.0
+
+    return recency_score + impact_score - low_value_penalty
 
 
 def log(msg):
@@ -170,7 +198,17 @@ def _looks_like_title_repeat(title, summary):
     return norm_summary == norm_title or norm_summary.startswith(norm_title)
 
 
-def make_summary(raw, title="", max_sentences=5):
+def first_sentence(text):
+    if not text:
+        return ""
+    return SENTENCE_SPLIT_RE.split(text.strip())[0].strip()
+
+
+def normalize_title(title):
+    return re.sub(r"\s+", " ", (title or "").strip().lower())
+
+
+def make_summary(raw, title="", max_sentences=MAX_SUMMARY_SENTENCES):
     text = clean_text(raw)
     text = WORDPRESS_BOILERPLATE_RE.sub("", text).strip()
     if not text:
@@ -309,7 +347,7 @@ def dedupe(items):
     out = []
     for item in items:
         url_key = normalize_url(item["url"])
-        title_key = re.sub(r"\s+", " ", item["title"].strip().lower())
+        title_key = normalize_title(item["title"])
         if url_key in seen_urls or title_key in seen_titles:
             continue
         seen_urls.add(url_key)
@@ -318,16 +356,26 @@ def dedupe(items):
     return out
 
 
-def finalize_items(raw_items, category_id, cap, now):
+def finalize_items(raw_items, category_id, cap, now, claimed):
+    """claimed is a (urls: set, titles: set) pair shared across the whole
+    build -- a story already picked for an earlier category is excluded here
+    and never shown twice across the digest."""
+    claimed_urls, claimed_titles = claimed
     items = dedupe(raw_items)
     items = [i for i in items if not is_junk_title(i["title"])]
     items = [i for i in items if not contains_excluded_keyword(i["title"], i.get("raw_summary", ""))]
+    items = [
+        i for i in items
+        if normalize_url(i["url"]) not in claimed_urls and normalize_title(i["title"]) not in claimed_titles
+    ]
     # Blend of recency + a light "impact" keyword signal -- see relevance_score().
     items.sort(key=lambda i: relevance_score(i, now), reverse=True)
     items = items[:cap]
 
     result = []
     for i in items:
+        claimed_urls.add(normalize_url(i["url"]))
+        claimed_titles.add(normalize_title(i["title"]))
         result.append({
             "title": i["title"],
             "url": i["url"],
@@ -350,6 +398,9 @@ def build():
     output_categories = []
     gnews_key = os.environ.get("GNEWS_API_KEY", "").strip()
     now = datetime.now(timezone.utc)
+    # Shared across every category so the same story is never selected twice
+    # across the whole digest -- see finalize_items().
+    claimed = (set(), set())
 
     for cat in config["categories"]:
         cat_id = cat["id"]
@@ -361,7 +412,7 @@ def build():
                 pool.extend(raw_pool.get(src_cat, []))
             keywords = cat.get("keywords", [])
             filtered = [i for i in pool if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(filtered, cat_id, cap, now)
+            items = finalize_items(filtered, cat_id, cap, now, claimed)
 
         elif cat.get("type") == "gnews":
             if not gnews_key:
@@ -372,7 +423,7 @@ def build():
                 for query in cat.get("queries", []):
                     raw.extend(fetch_gnews(query, gnews_key, warnings))
                     time.sleep(1)  # be polite to the free-tier API
-                items = finalize_items(raw, cat_id, cap, now)
+                items = finalize_items(raw, cat_id, cap, now, claimed)
 
         else:
             raw = []
@@ -385,7 +436,7 @@ def build():
             keywords = cat.get("keywords")
             if keywords:
                 raw = [i for i in raw if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(raw, cat_id, cap, now)
+            items = finalize_items(raw, cat_id, cap, now, claimed)
 
         output_categories.append({
             "id": cat_id,
@@ -396,9 +447,31 @@ def build():
             "items": items,
         })
 
+    # "Brief": a ~5-minute-read digest-of-the-digest for the home page -- the
+    # single top-ranked (already-selected) story from each non-collapsed
+    # category, in the same order as the full sections below.
+    brief = []
+    for cat in output_categories:
+        if cat["collapsedByDefault"] or not cat["items"]:
+            continue
+        top = cat["items"][0]
+        # First sentence only -- the brief needs to stay skimmable; the full
+        # (up to MAX_SUMMARY_SENTENCES) summary is still on the card below.
+        takeaway = first_sentence(top["summary"]) or top["why_it_matters"]
+        brief.append({
+            "categoryId": cat["id"],
+            "categoryTitle": cat["title"],
+            "title": top["title"],
+            "url": top["url"],
+            "source": top["source"],
+            "takeaway": takeaway,
+            "paywalled": top["paywalled"],
+        })
+
     digest = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "warnings": warnings,
+        "brief": brief,
         "categories": output_categories,
     }
 
@@ -407,7 +480,8 @@ def build():
         json.dump(digest, f, ensure_ascii=False, indent=2)
 
     total_items = sum(len(c["items"]) for c in output_categories)
-    log(f"Wrote {OUTPUT_PATH}: {total_items} items across {len(output_categories)} categories, {len(warnings)} warnings")
+    log(f"Wrote {OUTPUT_PATH}: {total_items} items across {len(output_categories)} categories "
+        f"({len(brief)} in the brief), {len(warnings)} warnings")
     if warnings:
         for w in warnings:
             log(f"  - {w}")

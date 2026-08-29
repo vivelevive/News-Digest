@@ -55,7 +55,7 @@ function cardHtml(item) {
     ? `<div class="why"><b>Why it matters:</b> ${escapeHtml(item.why_it_matters)}</div>`
     : "";
   const summary = item.summary
-    ? `<p class="summary">${escapeHtml(item.summary)}</p>`
+    ? `<p class="summary"><b>Summary:</b> ${escapeHtml(item.summary)}</p>`
     : "";
   return `
     <article class="card">
@@ -96,6 +96,28 @@ function sectionHtml(cat) {
     </section>`;
 }
 
+function briefItemHtml(entry) {
+  const paywall = entry.paywalled ? " 🔒" : "";
+  return `
+    <li class="brief-item">
+      <a class="brief-cat" href="#${escapeHtml(entry.categoryId)}">${escapeHtml(entry.categoryTitle)}</a>
+      <a class="brief-headline" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.title)}${paywall}</a>
+      ${entry.takeaway ? `<p class="brief-takeaway">${escapeHtml(entry.takeaway)}</p>` : ""}
+    </li>`;
+}
+
+function briefHtml(brief) {
+  if (!brief || !brief.length) return "";
+  return `
+    <section class="brief" id="brief">
+      <div class="topic-head">
+        <h2>🕐 Today in Brief</h2>
+        <span class="topic-sub">${brief.length} stories · under 5 min</span>
+      </div>
+      <ol class="brief-list">${brief.map(briefItemHtml).join("")}</ol>
+    </section>`;
+}
+
 function selectOptionsHtml(categories) {
   return categories
     .map((c) => `<option value="${escapeHtml(c.id)}">${escapeHtml(c.navLabel || c.title)}</option>`)
@@ -129,8 +151,9 @@ async function init() {
     }
 
     const categories = data.categories || [];
-    select.innerHTML = `<option value="">Topic…</option>${selectOptionsHtml(categories)}`;
-    main.innerHTML = categories.map(sectionHtml).join("");
+    const briefOption = (data.brief && data.brief.length) ? `<option value="brief">🕐 Today in Brief</option>` : "";
+    select.innerHTML = `<option value="">Topic…</option>${briefOption}${selectOptionsHtml(categories)}`;
+    main.innerHTML = briefHtml(data.brief) + categories.map(sectionHtml).join("");
   } catch (err) {
     updated.textContent = "Not yet updated";
     banner.textContent = "⚠ Couldn't load today's digest yet. The first run happens on the next scheduled GitHub Actions job — check back soon, or trigger it manually from the Actions tab.";
