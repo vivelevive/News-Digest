@@ -54,7 +54,7 @@
       "navLabel": "Tech AU",
       "subtitle": "ZDNet · iTnews",
       "sources": [
-        { "name": "ZDNet", "url": "https://www.zdnet.com/news/rss.xml", "region": "Australia" },
+        { "name": "ZDNet", "url": "https://www.zdnet.com/rss/all/", "region": "Australia" },
         { "name": "iTnews", "url": "https://www.itnews.com.au/RSS/rss.ashx", "region": "Australia" }
       ]
     },
