@@ -35,6 +35,15 @@ if [ -n "$untracked" ]; then
   echo "$untracked"
 fi
 
+# Any leftover local edit to $DIGEST_FILE itself is safe to discard --
+# it's about to be regenerated fresh in step 2 regardless, and `git rebase`
+# below refuses to start at all while ANY tracked file (this one included)
+# has unstaged changes.
+if ! git diff --quiet -- "$DIGEST_FILE" || ! git diff --cached --quiet -- "$DIGEST_FILE"; then
+  echo "==> Discarding a stale local edit to $DIGEST_FILE (it'll be regenerated fresh below)."
+  git checkout -- "$DIGEST_FILE" 2>/dev/null || git restore --staged --worktree -- "$DIGEST_FILE"
+fi
+
 # 1. Fetch + rebase (this is what handles the bot-committed-digest.json race).
 echo "==> Fetching origin..."
 git fetch origin || fail "git fetch failed"
