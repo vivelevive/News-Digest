@@ -1,8 +1,6 @@
 {
-  "generated_at": "2026-09-07T13:07:50.230487+00:00",
-  "warnings": [
-    "ZDNet: feed unreachable (HTTPError)"
-  ],
+  "generated_at": "2026-09-07T13:22:41.596898+00:00",
+  "warnings": [],
   "brief": [
     {
       "categoryId": "self-development",
@@ -70,11 +68,11 @@
     {
       "categoryId": "stock-index",
       "categoryTitle": "Stock Index Movements & Analyst Commentary",
-      "title": "Investors Are Embracing Risk Even as Global Bond Yields Climb",
-      "url": "https://www.bloomberg.com/news/newsletters/2026-09-07/investors-are-embracing-risk-even-as-global-bond-yields-climb",
-      "source": "Bloomberg Markets",
-      "takeaway": "Stocks, credit are powering ahead as earnings rise.",
-      "paywalled": false
+      "title": "European Chip Stocks Rise, Buoyed By Asian Peers",
+      "url": "https://www.wsj.com/finance/stocks/nikkei-rises-1-8-led-by-chip-related-stocks-37f5728d?mod=rss_markets_main",
+      "source": "Wall Street Journal",
+      "takeaway": "Shares of European semiconductor companies were in green territory following strong gains in Asia as investors continued to bet on stocks with exposure to artificial intelligence.",
+      "paywalled": true
     },
     {
       "categoryId": "regulatory",
@@ -328,21 +326,21 @@
           "paywalled": false
         },
         {
-          "title": "Why Tencent is swapping Bilibili equity for debt, and what AI has to do with it",
-          "url": "https://www.scmp.com/tech/big-tech/article/3366657/why-tencent-swapping-bilibili-equity-debt-and-what-ai-has-do-it?utm_source=rss_feed",
-          "source": "South China Morning Post (Tech)",
-          "published": "2026-09-07T11:30:06+00:00",
-          "summary": "Tencent Holdings’ pivot from a core shareholder to a major creditor in Bilibili offers a clear window into how China’s Big Tech players are rebalancing portfolio risk while funding expensive artificial intelligence initiatives. The shift, executed through Bilibili’s proposed US$700 million convertible bond package announced on Friday, allows Tencent to lock in capital flexibility without severing ties with one of China’s largest online video platforms, according to analysts.",
-          "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
-          "region": "Asia",
-          "paywalled": false
-        },
-        {
           "title": "How generative AI helps SenseTime turn a profit even as Chinese peers struggle",
           "url": "https://www.scmp.com/tech/tech-trends/article/3366436/how-generative-ai-helps-sensetime-turn-profit-even-chinese-peers-struggle?utm_source=rss_feed",
           "source": "South China Morning Post (Tech)",
           "published": "2026-09-07T02:30:05+00:00",
           "summary": "Chinese artificial intelligence pioneer SenseTime is carving a unique path to profitability by steering away from a blind chase for model size, focusing instead on helping clients complete enterprise tasks, executives from the firm told the South China Morning Post. Speaking after the firm reported a net profit of 617.3 million yuan (US$92.0 million) for the first half of 2026 last week, executives including CEO Xu Li and chief financial officer Wang Zheng outlined how a pivot towards AI...",
+          "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
+          "region": "Asia",
+          "paywalled": false
+        },
+        {
+          "title": "Why Tencent is swapping Bilibili equity for debt, and what AI has to do with it",
+          "url": "https://www.scmp.com/tech/big-tech/article/3366657/why-tencent-swapping-bilibili-equity-debt-and-what-ai-has-do-it?utm_source=rss_feed",
+          "source": "South China Morning Post (Tech)",
+          "published": "2026-09-07T11:30:06+00:00",
+          "summary": "Tencent Holdings’ pivot from a core shareholder to a major creditor in Bilibili offers a clear window into how China’s Big Tech players are rebalancing portfolio risk while funding expensive artificial intelligence initiatives. The shift, executed through Bilibili’s proposed US$700 million convertible bond package announced on Friday, allows Tencent to lock in capital flexibility without severing ties with one of China’s largest online video platforms, according to analysts.",
           "why_it_matters": "Tracks major tech and business shifts across Asia that can affect regional markets and supply chains.",
           "region": "Asia",
           "paywalled": false
@@ -456,21 +454,21 @@
           "paywalled": false
         },
         {
-          "title": "Google escapes ad tech breakup",
-          "url": "https://www.itnews.com.au/news/google-escapes-ad-tech-breakup-628649?utm_source=feed&utm_medium=rss&utm_campaign=iTnews+",
-          "source": "iTnews",
-          "published": "2026-09-02T20:52:00+00:00",
-          "summary": "In third big tech antitrust loss for US.",
+          "title": "This phone’s detachable camera might be the smartest device I saw at IFA",
+          "url": "https://www.zdnet.com/tech/detachable-camera-phone-rugone-xsnap-7-pro-ifa-2026/",
+          "source": "ZDNet",
+          "published": "2026-09-06T08:48:50+00:00",
+          "summary": "RugOne’s Xsnap 7 Pro features a modular camera that can double as an action cam.",
           "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
           "region": "Australia",
           "paywalled": false
         },
         {
-          "title": "ACMA fines Telstra for SIM swapping prevention misses",
-          "url": "https://www.itnews.com.au/news/acma-fines-telstra-for-sim-swapping-prevention-misses-628638?utm_source=feed&utm_medium=rss&utm_campaign=iTnews+",
-          "source": "iTnews",
-          "published": "2026-09-02T20:00:00+00:00",
-          "summary": "Frontline staff didn't follow telco's own processes.",
+          "title": "The 5 coolest phones I saw at IFA 2026 – including a new foldable",
+          "url": "https://www.zdnet.com/tech/the-5-coolest-phones-i-saw-at-ifa-2026/",
+          "source": "ZDNet",
+          "published": "2026-09-06T06:52:05+00:00",
+          "summary": "There are many amazing devices at IFA 2026, but these five phones were the perfect combination of practical and fun design.",
           "why_it_matters": "Local tech-industry news relevant to the Australian market and workplace.",
           "region": "Australia",
           "paywalled": false
@@ -515,6 +513,16 @@
           "paywalled": false
         },
         {
+          "title": "Spider-Man, Odyssey Help Power Box Office Comeback",
+          "url": "https://www.bloomberg.com/news/videos/2026-09-07/spider-man-odyssey-help-power-box-office-comeback-video",
+          "source": "Bloomberg Markets",
+          "published": "2026-09-07T13:05:47+00:00",
+          "summary": "Hollywood is having its best year since 2019 as moviegoers return to theaters in force. Global ticket sales are up 15% from last year, with five films topping the billion-dollar mark.",
+          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
+          "region": null,
+          "paywalled": false
+        },
+        {
           "title": "Polish Stocks Beat US and European Peers as Foreigners Pile In",
           "url": "https://www.bloomberg.com/news/articles/2026-09-07/polish-stocks-beat-us-and-european-peers-as-foreigners-pile-in",
           "source": "Bloomberg Markets",
@@ -523,16 +531,6 @@
           "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
           "region": null,
           "paywalled": false
-        },
-        {
-          "title": "Australia to export AI compute as data centre demand surges - AFR",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQaE1mX2t6bXBHdE5KVTNnOXU2SmhXVXc4TEJCR0NQbWY5WVZBU2R6N1R0QVp5WDlLemJPT2xzQ00yT3h5M2ppbllNNTYxSjFjR0N3ZDduNVhhb2thMFRFTVM1ektkUVg3YjBQX2tKUEpWYXRWWnc2YnFkQ3daNVVwVG9mUFBxLTFuYjFuSHRfdXcxWVYzSlhLb0syRF9xVFZnMWNITkN4a3FVbjVGS0tlczdQR0thVkVTaWc1Rg?oc=5",
-          "source": "Australian Financial Review",
-          "published": "2026-09-07T08:16:00+00:00",
-          "summary": "",
-          "why_it_matters": "Moves markets and macro conditions that affect savings, investments, and the broader economy.",
-          "region": null,
-          "paywalled": true
         }
       ]
     },
@@ -543,16 +541,6 @@
       "subtitle": "Filtered from Finance News for ASX 200 / S&P 500 + analyst rationale",
       "collapsedByDefault": false,
       "items": [
-        {
-          "title": "Investors Are Embracing Risk Even as Global Bond Yields Climb",
-          "url": "https://www.bloomberg.com/news/newsletters/2026-09-07/investors-are-embracing-risk-even-as-global-bond-yields-climb",
-          "source": "Bloomberg Markets",
-          "published": "2026-09-07T09:55:29+00:00",
-          "summary": "Stocks, credit are powering ahead as earnings rise.",
-          "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
-          "region": null,
-          "paywalled": false
-        },
         {
           "title": "European Chip Stocks Rise, Buoyed By Asian Peers",
           "url": "https://www.wsj.com/finance/stocks/nikkei-rises-1-8-led-by-chip-related-stocks-37f5728d?mod=rss_markets_main",
@@ -589,6 +577,16 @@
           "source": "Bloomberg Markets",
           "published": "2026-09-07T03:44:49+00:00",
           "summary": "Emerging-market equities rallied at the start of the week as optimism over new AI models boosted heavyweight tech stocks, helping counter the drag from higher oil prices.",
+          "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
+          "region": null,
+          "paywalled": false
+        },
+        {
+          "title": "Stocks Slip as Rising Oil Prices Lift Bond Yields: Markets Wrap",
+          "url": "https://www.bloomberg.com/news/articles/2026-09-06/stock-market-today-dow-s-p-live-updates",
+          "source": "Bloomberg Markets",
+          "published": "2026-09-06T22:15:34+00:00",
+          "summary": "Stocks slipped in cautious trading as an escalation in the Middle East pushed oil prices higher, lifting bond yields in Europe and Asia.",
           "why_it_matters": "Directly relevant to ASX 200 / S&P 500-linked holdings, with analyst rationale for context.",
           "region": null,
           "paywalled": false
@@ -675,7 +673,7 @@
           "title": "Saxony-Anhalt election delivers a blow to Merz and a warning to Europe - Reuters",
           "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPMmdkeWFmV2FTc2lKQlRsS3YxZ3Fkbjg1Q1VMY25hZ0ViWmdGUGRjSk45QU5Zbmg1aVk5UjZZVlVaTU9KX0pCRDVTSDdIZVhtM2d3ZEdJQ1RQVW9VSy1FUTNTT04yemtkaXFXMV9vUl80R0Rhend5bkM5UGZudkRGaWlQMGR4Z0duc0pXME4tUWF1NHkxQnhNbUZsMWp4cjg?oc=5",
           "source": "Reuters World",
-          "published": "2026-09-07T12:32:00+00:00",
+          "published": "2026-09-07T13:11:34+00:00",
           "summary": "",
           "why_it_matters": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
           "region": null,
