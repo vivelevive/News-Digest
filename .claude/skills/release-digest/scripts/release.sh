@@ -17,13 +17,22 @@ REASON="${1:-}"
 fail() { echo "release-digest: $1" >&2; exit 1; }
 
 # 0. Preconditions -- refuse to guess on anything unexpected.
+# Only tracked-file changes are a real risk here (the script only ever
+# `git add`s $DIGEST_FILE specifically, never `-A`/`.`), so untracked files
+# elsewhere in the tree are just noted, not treated as blocking.
 branch="$(git branch --show-current)"
 [ "$branch" = "main" ] || fail "not on main (on '$branch') -- switch to main before releasing."
 
-dirty="$(git status --porcelain -- . ":!$DIGEST_FILE")"
+dirty="$( { git diff --name-only -- . ":!$DIGEST_FILE"; git diff --cached --name-only -- . ":!$DIGEST_FILE"; } | sort -u)"
 if [ -n "$dirty" ]; then
-  fail "you have uncommitted changes outside $DIGEST_FILE -- commit or stash them first:
+  fail "you have uncommitted changes to tracked files outside $DIGEST_FILE -- commit or stash them first:
 $dirty"
+fi
+
+untracked="$(git status --porcelain --untracked-files=all -- . ":!$DIGEST_FILE" | grep '^??' || true)"
+if [ -n "$untracked" ]; then
+  echo "==> Note: untracked file(s) present, not touched by this script:"
+  echo "$untracked"
 fi
 
 # 1. Fetch + rebase (this is what handles the bot-committed-digest.json race).
