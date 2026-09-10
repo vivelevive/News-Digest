@@ -84,14 +84,22 @@ this needs nothing extra and always works. If you want genuinely
 story-specific writing instead:
 
 1. Get a free API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-   (Google AI Studio's free tier -- Flash/Flash-Lite models, no credit card,
-   ~1,500 requests/day; this pipeline uses ~70/day at most). This is a
-   personal account signup step only you can do.
+   (Google AI Studio's free tier, no credit card). This is a personal
+   account signup step only you can do.
 2. Add it as a repo secret named `GEMINI_API_KEY` (same place as the GNews
    secret above).
 
-That's it -- `build_digest.py` picks it up automatically next run. If the key
-is missing, invalid, or a call fails for any reason (rate limit, network,
+That's it -- `build_digest.py` picks it up automatically next run. The model
+is pinned to `gemini-2.5-flash-lite` (15 requests/min, 1,000/day free --
+comfortably above this pipeline's ~70/day) rather than a "-latest" alias:
+the first real run hit this the hard way -- `gemini-flash-latest` had
+quietly started resolving to a much heavier model with a free quota of just
+20 requests *total*, not per-minute, so every single call 429'd. Pinning
+trades "never needs updating" for "won't silently blow its quota on a
+Google-side model swap"; if Google deprecates 2.5-flash-lite, update
+`GEMINI_MODEL` in `scripts/build_digest.py`.
+
+If the key is missing, invalid, or a call fails for any reason (rate limit, network,
 malformed response), that item just silently keeps its rule-based summary --
 nothing breaks either way. The build log's `Gemini AI summaries: X/Y
 succeeded` line tells you how many actually went through.

@@ -349,9 +349,19 @@ def fetch_article_meta(url):
 # Entirely optional: with no key set, or on ANY failure (network, quota,
 # malformed response), a category/item just keeps its existing rule-based
 # summary and why_it_matters -- this must never be what breaks a build.
-GEMINI_MODEL = "gemini-flash-latest"
+# Pinned to a specific model, not a "-latest" alias: the first real run
+# revealed "gemini-flash-latest" currently resolves to gemini-3.8-flash,
+# whose free tier only allows 20 requests total (not per-minute -- total)
+# before hard 429s -- nowhere near this pipeline's ~70 items/day. Confirmed
+# via the same live diagnostics: "gemini-2.5-flash-lite" has a genuinely
+# workable free quota (15 RPM / 1,000 RPD as of Sep 2026). A "-latest" alias
+# is appealing for not needing updates, but it means an unannounced Google
+# model swap can silently blow the free quota again -- pinning trades that
+# risk for "notice when Google deprecates this specific model" instead,
+# which is a much rarer, more visible event.
+GEMINI_MODEL = "gemini-2.5-flash-lite"
 GEMINI_TIMEOUT = 20
-GEMINI_RATE_LIMIT_DELAY = 4.5  # seconds between calls; free tier is ~15 req/min
+GEMINI_RATE_LIMIT_DELAY = 4.5  # seconds between calls; comfortably under 15 req/min
 
 # Context about the reader, used so "why it matters" can name a specific,
 # personal read-through instead of restating the category. Deliberately
