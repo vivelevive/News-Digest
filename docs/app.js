@@ -46,31 +46,34 @@ function formatGeneratedAt(iso) {
   }
 }
 
-function cardHtml(item) {
+function entryHtml(item) {
   const region = item.region ? `<span class="region-tag">${REGION_FLAG[item.region] ?? ""} ${escapeHtml(item.region)}</span>` : "";
   const paywall = item.paywalled
-    ? `<div class="paywall-note">🔒 Paywalled at source — headline &amp; snippet only. Opens in your subscribed app/browser.</div>`
+    ? `<p class="paywall-note">Paywalled at source — headline and preview only. Opens in your subscribed app or browser.</p>`
     : "";
-  const why = item.why_it_matters
-    ? `<div class="why"><b>Why it matters:</b> ${escapeHtml(item.why_it_matters)}</div>`
+  // No "Why it matters:" label -- the italic, rust-ruled treatment reads
+  // as an editorial aside on its own, the way a margin note does in print.
+  const aside = item.why_it_matters
+    ? `<p class="aside">${escapeHtml(item.why_it_matters)}</p>`
     : "";
-  // Some sources (Google News RSS substitutes, used where a publisher's
-  // native RSS was discontinued) don't expose real article text via a
-  // plain fetch, so no summary can be generated. Say so explicitly rather
-  // than silently showing nothing, which reads as a missing/broken card.
-  const summary = item.summary
-    ? `<p class="summary"><b>Summary:</b> ${escapeHtml(item.summary)}</p>`
-    : `<p class="summary summary-unavailable">No preview available for this source — tap through to read.</p>`;
+  // No "Summary:" label either -- position under the headline already says
+  // what this text is, same as a newspaper deck. Some sources (Google News
+  // RSS substitutes, used where a publisher's native RSS was discontinued)
+  // don't expose real article text via a plain fetch, so say that plainly
+  // instead of silently leaving a gap.
+  const dek = item.summary
+    ? `<p class="dek">${escapeHtml(item.summary)}</p>`
+    : `<p class="dek dek-unavailable">No preview available for this source — tap through to read.</p>`;
   return `
-    <article class="card">
-      <div class="src-row">
-        <span>${escapeHtml(item.source)} · ${timeAgo(item.published)}</span>
+    <article class="entry">
+      <div class="byline">
+        <span>${escapeHtml(item.source)}, ${timeAgo(item.published)}</span>
         ${region}
       </div>
       <h3><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></h3>
-      ${summary}
-      ${why}
-      <a class="read-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Read full article →</a>
+      ${dek}
+      ${aside}
+      <a class="read-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Read the full story</a>
       ${paywall}
     </article>`;
 }
@@ -78,21 +81,24 @@ function cardHtml(item) {
 function sectionHtml(cat) {
   const items = cat.items || [];
   const body = items.length
-    ? `<div class="card-list">${items.map(cardHtml).join("")}</div>`
-    : `<div class="empty-topic">No fresh stories today.</div>`;
-  const sub = cat.subtitle ? `<span class="topic-sub">${escapeHtml(cat.subtitle)}</span>` : "";
+    ? `<div class="entry-list">${items.map(entryHtml).join("")}</div>`
+    : `<p class="empty-topic">No fresh stories today.</p>`;
+  const sub = cat.subtitle ? `<span class="section-sub">${escapeHtml(cat.subtitle)}</span>` : "";
 
   if (cat.collapsedByDefault) {
     return `
       <details class="low-priority" id="${cat.id}">
-        <summary>${escapeHtml(cat.title)}</summary>
+        <summary>
+          <span class="summary-title">${escapeHtml(cat.title)}</span>
+          <span class="summary-meta">${cat.subtitle ? escapeHtml(cat.subtitle) : ""}</span>
+        </summary>
         ${body}
       </details>`;
   }
 
   return `
     <section class="topic" id="${cat.id}">
-      <div class="topic-head">
+      <div class="section-head">
         <h2>${escapeHtml(cat.title)}</h2>
         ${sub}
       </div>
@@ -101,7 +107,7 @@ function sectionHtml(cat) {
 }
 
 function briefItemHtml(entry) {
-  const paywall = entry.paywalled ? " 🔒" : "";
+  const paywall = entry.paywalled ? " (paywalled)" : "";
   return `
     <li class="brief-item">
       <a class="brief-cat" href="#${escapeHtml(entry.categoryId)}">${escapeHtml(entry.categoryTitle)}</a>
@@ -114,9 +120,9 @@ function briefHtml(brief) {
   if (!brief || !brief.length) return "";
   return `
     <section class="brief" id="brief">
-      <div class="topic-head">
-        <h2>🕐 Today in Brief</h2>
-        <span class="topic-sub">${brief.length} stories · under 5 min</span>
+      <div class="section-head">
+        <h2>Today in brief</h2>
+        <span class="section-sub">${brief.length} stories, under 5 minutes</span>
       </div>
       <ol class="brief-list">${brief.map(briefItemHtml).join("")}</ol>
     </section>`;
@@ -150,19 +156,19 @@ async function init() {
     updated.textContent = `Updated ${formatGeneratedAt(data.generated_at)}`;
 
     if (Array.isArray(data.warnings) && data.warnings.length) {
-      banner.textContent = `⚠ ${data.warnings.join(" · ")}`;
+      banner.textContent = data.warnings.join(" — ");
       banner.classList.add("show");
     }
 
     const categories = data.categories || [];
-    const briefOption = (data.brief && data.brief.length) ? `<option value="brief">🕐 Today in Brief</option>` : "";
+    const briefOption = (data.brief && data.brief.length) ? `<option value="brief">Today in brief</option>` : "";
     select.innerHTML = `<option value="">Topic…</option>${briefOption}${selectOptionsHtml(categories)}`;
     main.innerHTML = briefHtml(data.brief) + categories.map(sectionHtml).join("");
   } catch (err) {
     updated.textContent = "Not yet updated";
-    banner.textContent = "⚠ Couldn't load today's digest yet. The first run happens on the next scheduled GitHub Actions job — check back soon, or trigger it manually from the Actions tab.";
+    banner.textContent = "Couldn't load today's digest yet. The first run happens on the next scheduled GitHub Actions job — check back soon, or trigger it manually from the Actions tab.";
     banner.classList.add("show");
-    main.innerHTML = `<div class="empty-topic">No digest data found yet.</div>`;
+    main.innerHTML = `<p class="empty-topic">No digest data found yet.</p>`;
     console.error("Digest load failed:", err);
   }
 

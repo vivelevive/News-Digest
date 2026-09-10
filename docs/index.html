@@ -5,19 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>News Digest</title>
 <meta name="description" content="Daily curated news digest, grouped by topic.">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#f5f4ef">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icons/icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
   <div class="top-inner">
-    <div class="meta-row">
-      <h1>📰 News Digest</h1>
+    <div class="masthead-row">
+      <h1>News Digest</h1>
       <select id="topic-select" class="topic-select" aria-label="Jump to topic">
         <option value="">Topic…</option>
       </select>
@@ -30,7 +33,7 @@
 </header>
 
 <main id="main">
-  <div class="card-list" id="loading-skeleton">
+  <div id="loading-skeleton">
     <div class="skeleton"></div>
     <div class="skeleton"></div>
     <div class="skeleton"></div>
@@ -38,7 +41,7 @@
 </main>
 
 <footer class="app-footer">
-  Built for personal use · sources linked belong to their original publishers · updates daily via GitHub Actions
+  Built for personal use — sources linked belong to their original publishers, updates daily via GitHub Actions
 </footer>
 
 <script src="app.js"></script>
