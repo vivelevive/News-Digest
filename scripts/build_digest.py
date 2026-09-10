@@ -86,8 +86,8 @@ WHY_IT_MATTERS = {
     "ma-deals": "Corporate deals and geopolitical shifts that can ripple into market pricing, hiring, and leadership moves.",
     "property": "Relevant to Sydney/NSW property market conditions if you're tracking prices or planning a move.",
     "ai-finance": "Tracks how AI adoption is reshaping financial services and enterprise operations more broadly.",
-    "esg": "Brief ESG/sustainable-finance headline for awareness -- lowest priority, headline only.",
-    "the-australian": "Big-picture Australian headline -- follow through on your own subscription to read in full.",
+    "esg": "Brief ESG/sustainable-finance headline for awareness — lowest priority, headline only.",
+    "the-australian": "Big-picture Australian headline — follow through on your own subscription to read in full.",
 }
 
 SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9\"'])")
@@ -350,16 +350,24 @@ def fetch_article_meta(url):
 # malformed response), a category/item just keeps its existing rule-based
 # summary and why_it_matters -- this must never be what breaks a build.
 # Pinned to a specific model, not a "-latest" alias: the first real run
-# revealed "gemini-flash-latest" currently resolves to gemini-3.8-flash,
-# whose free tier only allows 20 requests total (not per-minute -- total)
-# before hard 429s -- nowhere near this pipeline's ~70 items/day. Confirmed
-# via the same live diagnostics: "gemini-2.5-flash-lite" has a genuinely
-# workable free quota (15 RPM / 1,000 RPD as of Sep 2026). A "-latest" alias
-# is appealing for not needing updates, but it means an unannounced Google
-# model swap can silently blow the free quota again -- pinning trades that
-# risk for "notice when Google deprecates this specific model" instead,
-# which is a much rarer, more visible event.
-GEMINI_MODEL = "gemini-2.5-flash-lite"
+# revealed "gemini-flash-latest" resolved to gemini-3.8-flash, whose free
+# tier only allows 20 requests total (not per-minute -- total) before hard
+# 429s -- nowhere near this pipeline's ~70 items/day.
+#
+# Pinning isn't a one-and-done fix either, in practice: the very next run,
+# the pinned gemini-2.5-flash-lite came back 404 ("no longer available to
+# new users, use gemini-3.5-flash-lite") -- Google retired it within the
+# same day. The pattern that held across both incidents: it's specifically
+# the "-lite" suffix that carries the generous free quota (15 RPM / 1,000
+# RPD), independent of the version number attached to it, while the
+# non-lite "latest" flash alias tracks whatever their newest, most heavily
+# rate-limited model is. So if this model 404s again, look for whichever
+# model currently ends in "-flash-lite" (check the error message's own
+# suggestion first, same as this time) rather than assuming a specific pin
+# lasts -- and the ai_stats warnings surfaced right in digest.json's
+# "warnings" array are what will tell you this has happened, without
+# needing GitHub log access to find out.
+GEMINI_MODEL = "gemini-3.5-flash-lite"
 GEMINI_TIMEOUT = 20
 GEMINI_RATE_LIMIT_DELAY = 4.5  # seconds between calls; comfortably under 15 req/min
 

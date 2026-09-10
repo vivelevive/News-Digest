@@ -90,14 +90,19 @@ story-specific writing instead:
    secret above).
 
 That's it -- `build_digest.py` picks it up automatically next run. The model
-is pinned to `gemini-2.5-flash-lite` (15 requests/min, 1,000/day free --
+is pinned to `gemini-3.5-flash-lite` (15 requests/min, 1,000/day free --
 comfortably above this pipeline's ~70/day) rather than a "-latest" alias:
 the first real run hit this the hard way -- `gemini-flash-latest` had
 quietly started resolving to a much heavier model with a free quota of just
-20 requests *total*, not per-minute, so every single call 429'd. Pinning
-trades "never needs updating" for "won't silently blow its quota on a
-Google-side model swap"; if Google deprecates 2.5-flash-lite, update
-`GEMINI_MODEL` in `scripts/build_digest.py`.
+20 requests *total*, not per-minute, so every single call 429'd. The pin
+itself then got deprecated within the same day (Google retired
+`gemini-2.5-flash-lite` and pointed at `3.5-flash-lite` instead) -- across
+both incidents, the pattern was that any "-flash-lite" model carries the
+generous quota regardless of version number. If `GEMINI_MODEL` in
+`scripts/build_digest.py` ever 404s again, that's the thing to look for
+(the error message itself usually names the replacement); the digest's
+`warnings` array will tell you it happened without needing GitHub log
+access to find out.
 
 If the key is missing, invalid, or a call fails for any reason (rate limit, network,
 malformed response), that item just silently keeps its rule-based summary --
