@@ -375,13 +375,18 @@ GEMINI_RESPONSE_SCHEMA = {
 
 
 def generate_ai_content(item, category_title, api_key):
-    """Returns (summary, why_it_matters) from Gemini, or (None, None) on any
-    failure -- callers must fall back to the rule-based versions, never
-    leave a blank. Source text is whatever we already have (title +
-    raw_summary), which is often thin (a title-only Google News item) --
-    the prompt is written to still produce something useful, but a
-    genuinely title-only story will get a thinner AI summary too. That's
-    an honest reflection of the input, not a bug to chase."""
+    """Returns (summary, why_it_matters, error_detail). On success,
+    error_detail is None. On any failure, summary/why_it_matters are None
+    and error_detail is a short diagnostic string -- callers fall back to
+    the rule-based versions either way (nothing ever ships blank), but the
+    error is worth surfacing (see build()'s use of ai_stats) rather than
+    silently discarding it: a wrong secret name or invalid key would
+    otherwise fail all 69 calls with zero trace of why. Source text is
+    whatever we already have (title + raw_summary), which is often thin (a
+    title-only Google News item) -- the prompt is written to still produce
+    something useful, but a genuinely title-only story will get a thinner
+    AI summary too. That's an honest reflection of the input, not a bug to
+    chase."""
     source_text = clean_text(item.get("raw_summary", "")) or "(no article text available -- title only)"
     prompt = (
         f"You are writing one card in a daily news digest for {READER_PROFILE}. "
@@ -410,17 +415,26 @@ def generate_ai_content(item, category_title, api_key):
             },
             timeout=GEMINI_TIMEOUT,
         )
-        resp.raise_for_status()
+        if not resp.ok:
+            # Surface the API's own message (e.g. "API key not valid",
+            # "RESOURCE_EXHAUSTED") rather than just an HTTP status code.
+            try:
+                api_msg = resp.json().get("error", {}).get("message", "")
+            except Exception:  # noqa: BLE001
+                api_msg = ""
+            return None, None, f"HTTP {resp.status_code}{': ' + api_msg if api_msg else ''}"
         data = resp.json()
         text = data["candidates"][0]["content"]["parts"][0]["text"]
         parsed = json.loads(text)
         summary = clean_text(parsed.get("summary", "")).strip()
         why = clean_text(parsed.get("why_it_matters", "")).strip()
         if not summary or not why:
-            return None, None
-        return summary, why
-    except Exception:  # noqa: BLE001 - any failure just means "use the rule-based version"
-        return None, None
+            return None, None, "response parsed but summary/why_it_matters was empty"
+        return summary, why, None
+    except requests.exceptions.Timeout:
+        return None, None, f"timed out after {GEMINI_TIMEOUT}s"
+    except Exception as exc:  # noqa: BLE001 - any failure just means "use the rule-based version"
+        return None, None, f"{exc.__class__.__name__}: {exc}"
 
 
 def enrich_item(item):
@@ -640,12 +654,17 @@ def finalize_items(raw_items, category_id, category_title, cap, now, claimed, bo
         if gemini_key:
             if ai_stats is not None:
                 ai_stats["attempted"] = ai_stats.get("attempted", 0) + 1
-            ai_summary, ai_why = generate_ai_content(i, category_title, gemini_key)
+            ai_summary, ai_why, ai_error = generate_ai_content(i, category_title, gemini_key)
             time.sleep(GEMINI_RATE_LIMIT_DELAY)
             if ai_summary and ai_why:
                 summary, why_it_matters = ai_summary, ai_why
                 if ai_stats is not None:
                     ai_stats["succeeded"] = ai_stats.get("succeeded", 0) + 1
+            elif ai_stats is not None and ai_error and "last_error" not in ai_stats:
+                # Only keep the first distinct failure -- if all 69 calls
+                # are failing the same way (a bad key, say), one example is
+                # plenty; we don't need it repeated 69 times in warnings.
+                ai_stats["last_error"] = ai_error
 
         result.append({
             "title": i["title"],
@@ -744,6 +763,16 @@ def build():
             "takeaway": takeaway,
             "paywalled": top["paywalled"],
         })
+
+    if gemini_key:
+        # Surface a diagnosable message right in warnings (which lands in
+        # digest.json -- readable without any GitHub auth) if Gemini never
+        # worked at all this run, so "0/69 succeeded" doesn't have to be
+        # dug for in the Actions log.
+        if ai_stats["attempted"] and not ai_stats["succeeded"]:
+            warnings.append(f"Gemini: 0/{ai_stats['attempted']} calls succeeded -- {ai_stats.get('last_error', 'unknown error')} (using rule-based summaries instead)")
+        elif ai_stats["succeeded"] < ai_stats["attempted"]:
+            warnings.append(f"Gemini: {ai_stats['succeeded']}/{ai_stats['attempted']} calls succeeded -- some items fell back to rule-based summaries")
 
     digest = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
