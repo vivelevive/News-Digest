@@ -283,6 +283,10 @@ section.topic .topic-sub {
   color: var(--accent);
   font-weight: 700;
 }
+.card p.summary-unavailable {
+  font-style: italic;
+  color: var(--text-muted);
+}
 
 .card .why {
   background: var(--why-bg);

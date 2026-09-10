@@ -6,7 +6,7 @@
       "title": "Self-Development & Thought Leadership",
       "navLabel": "Self-Dev",
       "sources": [
-        { "name": "Harvard Business Review", "url": "https://feeds.feedburner.com/harvardbusiness" },
+        { "name": "Harvard Business Review", "url": "https://feeds.feedburner.com/harvardbusiness", "linkBase": "https://hbr.org/" },
         { "name": "McKinsey Insights", "url": "https://www.mckinsey.com/insights/rss" }
       ]
     },
@@ -76,7 +76,8 @@
       "navLabel": "Markets",
       "subtitle": "Filtered from Finance News for ASX 200 / S&P 500 + analyst rationale",
       "derivedFrom": ["finance"],
-      "keywords": ["asx 200", "asx200", "s&p 500", "s&p500", "index", "shares", "stocks", "wall street", "analyst", "rally", "selloff", "sell-off", "close higher", "close lower", "points", "market close"]
+      "keywords": ["asx 200", "asx200", "s&p 500", "s&p500", "index", "shares", "stocks", "wall street", "analyst", "rally", "selloff", "sell-off", "close higher", "close lower", "points", "market close"],
+      "boostKeywords": ["asx 200", "asx200", "s&p 500", "s&p500", "nasdaq", "dow jones index", "dow jones industrial"]
     },
     {
       "id": "regulatory",

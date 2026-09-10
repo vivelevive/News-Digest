@@ -1,6 +1,6 @@
 ---
 name: preview-digest
-description: Locally regenerate and visually preview the News Digest dashboard (docs/) in the Browser pane before pushing -- runs scripts/build_digest.py, serves docs/ via the "news-digest-static" launch config, and checks it at mobile width since this is a mobile-first PWA. Use this whenever the user asks to preview, check, verify, or "see" a change to the dashboard UI (docs/index.html, docs/app.js, docs/style.css), the digest categories, or config/sources.json -- or after Claude itself makes such a change and should confirm it renders correctly before reporting done. This is LOCAL-ONLY: it never touches git or the live GitHub Pages site (see the release-digest skill for shipping changes).
+description: Locally regenerate and visually preview the News Digest dashboard (docs/) in the Browser pane before pushing -- runs scripts/build_digest.py, serves docs/ via the "news-digest-static" launch config, and checks it at mobile width since this is a mobile-first PWA. Use this whenever the user asks to preview, check, verify, or "see" a change to the dashboard UI (docs/index.html, docs/app.js, docs/style.css), the digest categories, or config/sources.json -- or after Claude itself makes such a change and should confirm it renders correctly before reporting done. This is LOCAL-ONLY: it never touches git or the live GitHub Pages site.
 ---
 
 # Preview Digest
@@ -49,9 +49,11 @@ waiting for a GitHub Actions run or a Pages deploy:
 
 This never runs `git`, never pushes, and never touches the live
 `https://vivelevive.github.io/News-Digest/` site -- that only updates via
-the GitHub Actions job or the **release-digest** skill. If the preview
-looks good and the change is ready to ship, say so and offer to run
-release-digest next rather than doing it as part of this skill.
+the GitHub Actions job, which builds fresh and deploys `docs/` straight to
+Pages as a build artifact (`digest.json` itself is gitignored and never
+committed -- see `.gitignore`). If the preview looks good and the change is
+ready to ship, a plain `git push` is all that's needed; there's no
+release/regen skill to run afterward.
 
 ## When NOT to bother with a full preview
 

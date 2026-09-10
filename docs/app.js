@@ -54,9 +54,13 @@ function cardHtml(item) {
   const why = item.why_it_matters
     ? `<div class="why"><b>Why it matters:</b> ${escapeHtml(item.why_it_matters)}</div>`
     : "";
+  // Some sources (Google News RSS substitutes, used where a publisher's
+  // native RSS was discontinued) don't expose real article text via a
+  // plain fetch, so no summary can be generated. Say so explicitly rather
+  // than silently showing nothing, which reads as a missing/broken card.
   const summary = item.summary
     ? `<p class="summary"><b>Summary:</b> ${escapeHtml(item.summary)}</p>`
-    : "";
+    : `<p class="summary summary-unavailable">No preview available for this source — tap through to read.</p>`;
   return `
     <article class="card">
       <div class="src-row">

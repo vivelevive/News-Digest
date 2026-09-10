@@ -6,11 +6,17 @@ on:
     - cron: "0 19 * * *"
   workflow_dispatch: {}
 
+# `pages`/`id-token` are for deploying the built site as a Pages artifact.
+# `contents: write` is only for the tiny keepalive commit below -- it never
+# touches docs/data/digest.json, which is no longer committed to the repo
+# at all (see the comment on that step for why).
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
-  group: daily-digest
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -31,16 +37,42 @@ jobs:
       - name: Build digest
         env:
           GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/build_digest.py
 
-      - name: Commit updated digest
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Keep the scheduled trigger alive
+        # GitHub auto-disables a scheduled workflow after 60 days with no
+        # repository activity. digest.json used to (accidentally) serve as
+        # that activity by being committed daily -- which is exactly what
+        # caused the recurring rebase conflicts this replaces. A one-line
+        # timestamp in its own file that nobody else ever touches gets the
+        # same keepalive effect with zero chance of conflicting with
+        # anything a person is actively working on.
         run: |
+          mkdir -p .github/keepalive
+          date -u +"Last scheduled run: %Y-%m-%dT%H:%M:%SZ" > .github/keepalive/last-run.txt
           git config user.name "news-digest-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/data/digest.json
+          git add .github/keepalive/last-run.txt
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No change (shouldn't happen -- timestamp always differs)."
           else
-            git commit -m "Update daily digest ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git commit -m "chore: keepalive ($(date -u +'%Y-%m-%d'))"
             git push
           fi
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

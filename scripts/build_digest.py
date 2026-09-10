@@ -41,7 +41,7 @@ import sys
 import time
 import html
 from datetime import datetime, timezone
-from urllib.parse import urlsplit, urlunsplit
+from urllib.parse import urlsplit, urlunsplit, urljoin
 
 import feedparser
 import requests
@@ -106,17 +106,32 @@ JUNK_TITLE_PATTERNS = [
 ]
 
 
+_PERCENT_ENCODING_RE = re.compile(r"%[0-9A-Fa-f]{2}")
+
+
 def is_junk_title(title):
     t = (title or "").strip()
     if not t:
         return True
-    return any(p.search(t) for p in JUNK_TITLE_PATTERNS)
+    if any(p.search(t) for p in JUNK_TITLE_PATTERNS):
+        return True
+    # Occasionally Google News' RSS itself hands back a corrupted title --
+    # a hash-looking prefix glued directly onto still-URL-encoded text, e.g.
+    # "9718d10...49Funds%20run%20by%20listed%20group%20Dexus...". A real
+    # headline never contains literal percent-encoding; seeing it more than
+    # once is a reliable enough signal this is unrecoverable upstream junk,
+    # not something worth trying to repair.
+    if len(_PERCENT_ENCODING_RE.findall(t)) >= 2:
+        return True
+    return False
 
 
 # Words that tend to mark a story as a bigger deal than routine coverage --
 # used as a (rule-based) proxy for "relevance / interest" when picking which
 # 5 items per category make the cut. Not a substitute for real editorial
-# judgement, just a deterministic tiebreaker alongside recency.
+# judgement, just a deterministic tiebreaker alongside recency. Matched as
+# whole words (see IMPACT_KEYWORD_RES) so e.g. "ban" doesn't fire inside
+# "banking" or "fine" inside "define".
 IMPACT_KEYWORDS = [
     "record", "surge", "surges", "plunge", "plunges", "soar", "soars", "crash", "crashes",
     "billion", "collapse", "warns", "warning", "fine", "fined", "penalty", "penalties",
@@ -126,29 +141,42 @@ IMPACT_KEYWORDS = [
     "rate cut", "layoffs", "job cuts", "profit", "loss", "earnings", "guidance",
     "downgrade", "upgrade", "ban", "banned", "sanctions", "exclusive", "deal",
 ]
+IMPACT_KEYWORD_RES = [re.compile(r"\b" + re.escape(kw) + r"\b") for kw in IMPACT_KEYWORDS]
 
 
 # Shopping-deal roundups and personal-blog listicles ("This $14 cable is my
 # secret to...", "Best early Labor Day deals") are common filler on some
 # feeds (ZDNet in particular) but aren't "trends" news -- pushed down rather
 # than hard-excluded, so a category still has something to show if that's
-# all a feed returned on a given day.
+# all a feed returned on a given day. Deliberately anchored/narrow: an
+# earlier, unanchored version of "here's how" matched inside completely
+# normal headlines ("Here's how the Fed's decision will hit mortgages"),
+# quietly punishing legitimate explainer stories along with the clickbait.
 LOW_VALUE_PATTERNS = [
     re.compile(r"\bdeals?\b", re.IGNORECASE),
     re.compile(r"%\s?off", re.IGNORECASE),
     re.compile(r"\bcoupon\b", re.IGNORECASE),
     re.compile(r"\bmy secret\b", re.IGNORECASE),
-    re.compile(r"here.?s how", re.IGNORECASE),
+    re.compile(r"^here.?s how", re.IGNORECASE),
     re.compile(r"^how i\b", re.IGNORECASE),
     re.compile(r"\bbuying guide\b", re.IGNORECASE),
 ]
+# Kept below IMPACT_KEYWORD_RES's max possible bonus (min(hits,4)*0.15=0.6)
+# on purpose -- a listicle-shaped title that's ALSO genuinely high-impact
+# (rare, but possible) should still be able to claw its way back up rather
+# than the penalty being an unconditional veto.
+LOW_VALUE_PENALTY = 0.3
 
 
-def relevance_score(item, now):
+def relevance_score(item, now, boost_keywords=None):
     """Higher is better. Blends recency (dominant factor -- this is a *daily*
     digest) with a light keyword-based "impact" signal so that, among
     similarly-fresh stories, the ones that read as more consequential rank
-    first."""
+    first. `boost_keywords`, when given, is a stronger category-specific
+    signal (e.g. Stock Index Movements boosting literal "ASX 200"/"S&P 500"
+    mentions) that can outrank recency -- without it, a category whose
+    keyword *filter* is necessarily broad (to have anything to show most
+    days) just surfaces whatever's freshest, not what's actually on-topic."""
     published = item.get("published")
     if published:
         try:
@@ -160,12 +188,44 @@ def relevance_score(item, now):
     recency_score = 1.0 / (1.0 + age_hours / 24.0)  # ~1.0 fresh -> ~0.2 at a week old
 
     haystack = f"{item['title']} {item.get('raw_summary', '')}".lower()
-    impact_hits = sum(1 for kw in IMPACT_KEYWORDS if kw in haystack)
-    impact_score = min(impact_hits, 4) * 0.12  # capped so recency still dominates
+    impact_hits = sum(1 for pat in IMPACT_KEYWORD_RES if pat.search(haystack))
+    impact_score = min(impact_hits, 4) * 0.15  # capped so recency still dominates
 
-    low_value_penalty = 0.6 if any(p.search(item["title"]) for p in LOW_VALUE_PATTERNS) else 0.0
+    low_value_penalty = LOW_VALUE_PENALTY if any(p.search(item["title"]) for p in LOW_VALUE_PATTERNS) else 0.0
 
-    return recency_score + impact_score - low_value_penalty
+    boost_score = 0.0
+    if boost_keywords:
+        boost_hits = sum(1 for kw in boost_keywords if kw.lower() in haystack)
+        boost_score = min(boost_hits, 3) * 0.5
+
+    return recency_score + impact_score - low_value_penalty + boost_score
+
+
+def diversify_by_source(items, cap):
+    """items must already be sorted by relevance (desc). Round-robins across
+    distinct sources so one prolific feed (Bloomberg posts far more often
+    than RBA ever will) can't quietly fill every slot in a category -- each
+    source still contributes its own best items first, in relevance order,
+    just interleaved rather than let the single busiest source sweep the
+    board. Returns at most `cap` items; re-sort by relevance afterward if
+    you want display order to ignore which source an item came from."""
+    from collections import defaultdict, deque
+    queues = defaultdict(deque)
+    source_order = []
+    for i in items:
+        src = i["source"]
+        if src not in queues:
+            source_order.append(src)
+        queues[src].append(i)
+
+    out = []
+    while len(out) < cap and any(queues[s] for s in source_order):
+        for s in source_order:
+            if len(out) >= cap:
+                break
+            if queues[s]:
+                out.append(queues[s].popleft())
+    return out
 
 
 def log(msg):
@@ -221,6 +281,183 @@ def make_summary(raw, title="", max_sentences=MAX_SUMMARY_SENTENCES):
     if len(summary) > 900:
         summary = summary[:880].rsplit(" ", 1)[0] + "…"
     return summary
+
+
+JUNK_SUMMARY_PATTERNS = [
+    re.compile(r"^breadcrumb\b", re.IGNORECASE),
+    re.compile(r"skip to (main )?content", re.IGNORECASE),
+    re.compile(r"^on this page\b", re.IGNORECASE),
+]
+
+
+def is_junk_summary(text):
+    """Some sources' "description" field is scraped page furniture, not
+    article content (APRA/ASIC in particular emit breadcrumb/nav text).
+    Treat that the same as an empty summary -- worth trying to backfill,
+    not worth showing to the user."""
+    t = (text or "").strip()
+    if not t:
+        return True
+    return any(p.search(t) for p in JUNK_SUMMARY_PATTERNS)
+
+
+def is_google_news_url(url):
+    try:
+        return urlsplit(url).netloc.lower().endswith("news.google.com")
+    except (ValueError, AttributeError):
+        return False
+
+
+def strip_source_suffix(title):
+    """Google News titles are "Real Headline - Source Name". We already
+    show the source name in the card's byline, so a raw title makes it
+    read as "Real Headline - Source Name" twice on the same card."""
+    stripped = TRAILING_SOURCE_SUFFIX_RE.sub("", title).strip()
+    return stripped or title  # never return an empty title
+
+
+_OG_DESC_RE = re.compile(r'<meta[^>]+property=["\']og:description["\'][^>]+content=["\']([^"\']*)["\']', re.IGNORECASE)
+_META_DESC_RE = re.compile(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']*)["\']', re.IGNORECASE)
+ARTICLE_FETCH_TIMEOUT = 6
+
+
+def fetch_article_meta(url):
+    """Best-effort: GET the article page (following redirects -- this is
+    also how Google News' opaque /rss/articles/... links resolve to the
+    real publisher URL, without needing to reverse-engineer Google's
+    encoding) and pull its og:description/meta description. Returns
+    (final_url, description); either half may be empty/None on any failure.
+    Never raises -- a blocked or slow publisher must not fail the build."""
+    try:
+        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=ARTICLE_FETCH_TIMEOUT, allow_redirects=True)
+        body = resp.text[:200_000]  # cap read size; we only need the <head>
+        m = _OG_DESC_RE.search(body) or _META_DESC_RE.search(body)
+        desc = html.unescape(m.group(1)).strip() if m else ""
+        return resp.url, desc
+    except Exception:  # noqa: BLE001 - best-effort only
+        return None, ""
+
+
+# --- Optional real AI summary / why-it-matters via the Gemini free tier ---
+#
+# Everything else in this file is deliberately rule-based/extractive, per
+# the project's free-tier-only constraint. This is the one genuinely
+# optional exception: Google AI Studio's Gemini free tier (Flash/Flash-Lite)
+# needs no credit card and no billing account -- just a free Google account
+# and an API key the user generates themselves (github.com/settings, sorry,
+# aistudio.google.com/apikey) and adds as the GEMINI_API_KEY repo secret.
+# Entirely optional: with no key set, or on ANY failure (network, quota,
+# malformed response), a category/item just keeps its existing rule-based
+# summary and why_it_matters -- this must never be what breaks a build.
+GEMINI_MODEL = "gemini-flash-latest"
+GEMINI_TIMEOUT = 20
+GEMINI_RATE_LIMIT_DELAY = 4.5  # seconds between calls; free tier is ~15 req/min
+
+# Context about the reader, used so "why it matters" can name a specific,
+# personal read-through instead of restating the category. Deliberately
+# just a paraphrase of the project brief (ASX 200/S&P 500 exposure, AUD,
+# Sydney/NSW property, career in financial services) -- not new information
+# invented about the user.
+READER_PROFILE = (
+    "a Sydney-based professional with an interest in ASX 200 and S&P 500 "
+    "exposure, AUD movements, the Sydney/NSW property market, AI adoption "
+    "in financial services, and their own career/leadership development"
+)
+
+GEMINI_RESPONSE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "summary": {"type": "STRING", "description": "1-2 sentence, exec-level summary of the article's actual content."},
+        "why_it_matters": {"type": "STRING", "description": "1 sentence on why THIS specific story matters to the reader, naming the concrete detail (company, number, index, policy) that makes it relevant -- not a generic category restatement."},
+    },
+    "required": ["summary", "why_it_matters"],
+}
+
+
+def generate_ai_content(item, category_title, api_key):
+    """Returns (summary, why_it_matters) from Gemini, or (None, None) on any
+    failure -- callers must fall back to the rule-based versions, never
+    leave a blank. Source text is whatever we already have (title +
+    raw_summary), which is often thin (a title-only Google News item) --
+    the prompt is written to still produce something useful, but a
+    genuinely title-only story will get a thinner AI summary too. That's
+    an honest reflection of the input, not a bug to chase."""
+    source_text = clean_text(item.get("raw_summary", "")) or "(no article text available -- title only)"
+    prompt = (
+        f"You are writing one card in a daily news digest for {READER_PROFILE}. "
+        f"This story is filed under the \"{category_title}\" category.\n\n"
+        f"Headline: {item['title']}\n"
+        f"Source: {item['source']}\n"
+        f"Available article text: {source_text}\n\n"
+        "Write a concise, exec-level 1-2 sentence summary of what the article actually says "
+        "(not the headline restated), and a single sentence on why this specific story -- not "
+        "the category in general -- matters to this reader. Be concrete: name the company, "
+        "number, index, or policy involved where relevant. If the available text is too thin "
+        "to summarize meaningfully, say so briefly rather than inventing detail."
+    )
+    try:
+        resp = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
+            params={"key": api_key},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "responseMimeType": "application/json",
+                    "responseSchema": GEMINI_RESPONSE_SCHEMA,
+                    "temperature": 0.3,
+                    "maxOutputTokens": 300,
+                },
+            },
+            timeout=GEMINI_TIMEOUT,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        parsed = json.loads(text)
+        summary = clean_text(parsed.get("summary", "")).strip()
+        why = clean_text(parsed.get("why_it_matters", "")).strip()
+        if not summary or not why:
+            return None, None
+        return summary, why
+    except Exception:  # noqa: BLE001 - any failure just means "use the rule-based version"
+        return None, None
+
+
+def enrich_item(item):
+    """Mutates item in place. Only called on the small number of items that
+    actually made a category's final cut (~5 x category count per run), so
+    the extra request this can cost per item is bounded.
+
+    IMPORTANT caveat about Google News links (used as a substitute for
+    several sources whose native RSS was discontinued -- see sources.json):
+    their .../rss/articles/CBMi... URL is a client-side (JavaScript)
+    redirect, not an HTTP one. It resolves correctly for a real user in a
+    real browser -- verified directly, a phone tapping the link lands on
+    the actual publisher article -- but `requests` can't execute JS, so a
+    plain GET just returns Google's interstitial shell page: no real
+    og:description to scrape, and following redirects doesn't reach the
+    real URL either. Decoding it properly would mean reverse-engineering
+    Google's internal batchexecute endpoint (undocumented, and arguably
+    outside what their RSS interface sanctions) or running a full headless
+    browser in the Actions job for every such item. Given the link already
+    works for the person actually using this app, that cost isn't worth
+    paying -- so for Google News items this function only cleans up the
+    title's redundant "- Source Name" suffix (the source is already shown
+    in the byline) and does NOT attempt to touch the URL or backfill the
+    summary. For everything else -- direct RSS/GNews links, which point at
+    the real page and respond to a plain GET -- it still tries to backfill
+    an empty/junk summary from the article's own og:description."""
+    if is_google_news_url(item["url"]):
+        item["title"] = strip_source_suffix(item["title"])
+        return
+
+    prelim_summary = make_summary(item.get("raw_summary", ""), item["title"])
+    if not is_junk_summary(prelim_summary):
+        return
+
+    _final_url, desc = fetch_article_meta(item["url"])
+    if desc and not is_junk_summary(desc):
+        item["raw_summary"] = desc
 
 
 def contains_excluded_keyword(*texts):
@@ -287,6 +524,16 @@ def fetch_rss(source, warnings):
         link = entry.get("link", "")
         if not title or not link:
             continue
+        # Some feeds (HBR's FeedBurner proxy in particular) emit bare
+        # root-relative links like "/2026/09/some-post" with no host and no
+        # xml:base, so feedparser can't resolve them at all -- they'd
+        # otherwise ship as dead links. Resolving against the *feed's own*
+        # URL is wrong here too (feeds.feedburner.com doesn't host the
+        # article), so a source can declare the real site's base via
+        # "linkBase" in sources.json; that's tried first, the feed URL only
+        # as a last resort for the common case where they're the same host.
+        if not urlsplit(link).scheme:
+            link = urljoin(source.get("linkBase", url), link)
         summary_raw = entry.get("summary") or entry.get("description") or ""
         published = parse_published(entry)
         items.append({
@@ -356,10 +603,12 @@ def dedupe(items):
     return out
 
 
-def finalize_items(raw_items, category_id, cap, now, claimed):
+def finalize_items(raw_items, category_id, category_title, cap, now, claimed, boost_keywords=None, gemini_key=None, ai_stats=None):
     """claimed is a (urls: set, titles: set) pair shared across the whole
     build -- a story already picked for an earlier category is excluded here
-    and never shown twice across the digest."""
+    and never shown twice across the digest. ai_stats, if given, is a dict
+    this increments "attempted"/"succeeded" counters on, so build() can log
+    a one-line summary of how the optional Gemini pass went."""
     claimed_urls, claimed_titles = claimed
     items = dedupe(raw_items)
     items = [i for i in items if not is_junk_title(i["title"])]
@@ -369,20 +618,42 @@ def finalize_items(raw_items, category_id, cap, now, claimed):
         if normalize_url(i["url"]) not in claimed_urls and normalize_title(i["title"]) not in claimed_titles
     ]
     # Blend of recency + a light "impact" keyword signal -- see relevance_score().
-    items.sort(key=lambda i: relevance_score(i, now), reverse=True)
-    items = items[:cap]
+    items.sort(key=lambda i: relevance_score(i, now, boost_keywords), reverse=True)
+    # Enforce source diversity (a single prolific feed shouldn't sweep every
+    # slot), then re-sort the chosen set back to relevance order for display
+    # -- diversify_by_source's interleaving is a selection mechanism, not
+    # the order the user should actually read them in.
+    items = diversify_by_source(items, cap)
+    items.sort(key=lambda i: relevance_score(i, now, boost_keywords), reverse=True)
 
     result = []
     for i in items:
         claimed_urls.add(normalize_url(i["url"]))
         claimed_titles.add(normalize_title(i["title"]))
+        # Only ever called on items that made the final cut -- see
+        # enrich_item's docstring for why that bound matters.
+        enrich_item(i)
+
+        summary = make_summary(i.get("raw_summary", ""), i["title"])
+        why_it_matters = WHY_IT_MATTERS.get(category_id, "")
+
+        if gemini_key:
+            if ai_stats is not None:
+                ai_stats["attempted"] = ai_stats.get("attempted", 0) + 1
+            ai_summary, ai_why = generate_ai_content(i, category_title, gemini_key)
+            time.sleep(GEMINI_RATE_LIMIT_DELAY)
+            if ai_summary and ai_why:
+                summary, why_it_matters = ai_summary, ai_why
+                if ai_stats is not None:
+                    ai_stats["succeeded"] = ai_stats.get("succeeded", 0) + 1
+
         result.append({
             "title": i["title"],
             "url": i["url"],
             "source": i["source"],
             "published": i["published"],
-            "summary": make_summary(i.get("raw_summary", ""), i["title"]),
-            "why_it_matters": WHY_IT_MATTERS.get(category_id, ""),
+            "summary": summary,
+            "why_it_matters": why_it_matters,
             "region": i.get("region"),
             "paywalled": i.get("paywalled", False),
         })
@@ -397,6 +668,8 @@ def build():
     raw_pool = {}  # category_id -> list of raw items (pre-filter), for "derived" categories
     output_categories = []
     gnews_key = os.environ.get("GNEWS_API_KEY", "").strip()
+    gemini_key = os.environ.get("GEMINI_API_KEY", "").strip() or None
+    ai_stats = {"attempted": 0, "succeeded": 0}
     now = datetime.now(timezone.utc)
     # Shared across every category so the same story is never selected twice
     # across the whole digest -- see finalize_items().
@@ -405,6 +678,10 @@ def build():
     for cat in config["categories"]:
         cat_id = cat["id"]
         cap = MAX_ITEMS_PER_CATEGORY
+        # Strong category-specific ranking signal, e.g. Stock Index
+        # Movements boosting literal "ASX 200"/"S&P 500" mentions above
+        # generic market chatter -- see relevance_score().
+        boost_keywords = cat.get("boostKeywords")
 
         if cat.get("derivedFrom"):
             pool = []
@@ -412,7 +689,7 @@ def build():
                 pool.extend(raw_pool.get(src_cat, []))
             keywords = cat.get("keywords", [])
             filtered = [i for i in pool if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(filtered, cat_id, cap, now, claimed)
+            items = finalize_items(filtered, cat_id, cat["title"], cap, now, claimed, boost_keywords, gemini_key, ai_stats)
 
         elif cat.get("type") == "gnews":
             if not gnews_key:
@@ -423,7 +700,7 @@ def build():
                 for query in cat.get("queries", []):
                     raw.extend(fetch_gnews(query, gnews_key, warnings))
                     time.sleep(1)  # be polite to the free-tier API
-                items = finalize_items(raw, cat_id, cap, now, claimed)
+                items = finalize_items(raw, cat_id, cat["title"], cap, now, claimed, boost_keywords, gemini_key, ai_stats)
 
         else:
             raw = []
@@ -436,7 +713,7 @@ def build():
             keywords = cat.get("keywords")
             if keywords:
                 raw = [i for i in raw if contains_any_keyword(keywords, i["title"], i.get("raw_summary", ""))]
-            items = finalize_items(raw, cat_id, cap, now, claimed)
+            items = finalize_items(raw, cat_id, cat["title"], cap, now, claimed, boost_keywords, gemini_key, ai_stats)
 
         output_categories.append({
             "id": cat_id,
@@ -482,6 +759,9 @@ def build():
     total_items = sum(len(c["items"]) for c in output_categories)
     log(f"Wrote {OUTPUT_PATH}: {total_items} items across {len(output_categories)} categories "
         f"({len(brief)} in the brief), {len(warnings)} warnings")
+    if gemini_key:
+        log(f"Gemini AI summaries: {ai_stats['succeeded']}/{ai_stats['attempted']} succeeded "
+            f"(everything else used the rule-based summary/why-it-matters as a fallback)")
     if warnings:
         for w in warnings:
             log(f"  - {w}")
