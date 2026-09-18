@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python .claude/hooks/block_digest_json.py",
+            "statusMessage": "Checking digest.json guard..."
+          }
+        ]
+      }
+    ]
+  }
+}
