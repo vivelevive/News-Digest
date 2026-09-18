@@ -392,6 +392,102 @@ GEMINI_RESPONSE_SCHEMA = {
 }
 
 
+GEMINI_BRIEFING_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "note": {"type": "STRING", "description": "2-4 sentence executive morning briefing, second person, prose (not a list)."},
+    },
+    "required": ["note"],
+}
+
+
+def generate_briefing_note(brief, api_key):
+    """Returns (note, error_detail) for the Chief-of-Staff-style paragraph
+    that opens the home page, synthesizing the day's already-selected lead
+    stories (one per category, from `brief`) into a few sentences of actual
+    judgment rather than a re-listing of headlines. Same fallback contract
+    as generate_ai_content: on any failure the caller uses
+    rule_based_briefing_note() instead, nothing ever ships blank."""
+    lines = "\n".join(
+        f"- [{b['categoryTitle']}] {b['title']} ({b['source']}): {b['takeaway']}"
+        for b in brief
+    )
+    prompt = (
+        f"You are the Chief of Staff for {READER_PROFILE}. Below is today's lead "
+        "story from each topic in their news digest, already selected and ranked.\n\n"
+        f"{lines}\n\n"
+        "Write a short (2-4 sentence) morning briefing paragraph that opens the "
+        "digest: identify the 1-2 stories that matter most today, connect related "
+        "threads across topics if any genuinely exist, and close with a one-line "
+        "'watch for' note if something is worth keeping an eye on. Write in a "
+        "warm but efficient executive-assistant voice, addressing the reader "
+        "directly as 'you'. Prose only, not a list -- add synthesis and judgment, "
+        "don't just restate the headlines."
+    )
+    try:
+        resp = requests.post(
+            f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent",
+            params={"key": api_key},
+            json={
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "responseMimeType": "application/json",
+                    "responseSchema": GEMINI_BRIEFING_SCHEMA,
+                    "temperature": 0.4,
+                    "maxOutputTokens": 300,
+                },
+            },
+            timeout=GEMINI_TIMEOUT,
+        )
+        if not resp.ok:
+            try:
+                api_msg = resp.json().get("error", {}).get("message", "")
+            except Exception:  # noqa: BLE001
+                api_msg = ""
+            return None, f"HTTP {resp.status_code}{': ' + api_msg if api_msg else ''}"
+        data = resp.json()
+        text = data["candidates"][0]["content"]["parts"][0]["text"]
+        note = clean_text(json.loads(text).get("note", "")).strip()
+        if not note:
+            return None, "response parsed but note was empty"
+        return note, None
+    except requests.exceptions.Timeout:
+        return None, f"timed out after {GEMINI_TIMEOUT}s"
+    except Exception as exc:  # noqa: BLE001 - any failure just means "use the rule-based version"
+        return None, f"{exc.__class__.__name__}: {exc}"
+
+
+def rule_based_briefing_note(brief):
+    """Free, no-API fallback for the morning briefing paragraph -- used when
+    GEMINI_API_KEY isn't set, or the Gemini call above fails for any reason.
+    Deliberately names only the lead story plus a couple more (not every
+    category -- with ~12 categories in the brief, listing them all reads as
+    a run-on index, not a briefing) and folds the rest into a plain count."""
+    if not brief:
+        return "No fresh stories cleared the bar today -- check back after the next run."
+    lead = brief[0]
+    rest = brief[1:]
+    highlight_titles = []
+    seen = {lead["categoryTitle"]}
+    for b in rest:
+        if b["categoryTitle"] not in seen:
+            seen.add(b["categoryTitle"])
+            highlight_titles.append(b["categoryTitle"])
+        if len(highlight_titles) == 2:
+            break
+    remaining = len(rest) - len(highlight_titles)
+
+    parts = [
+        f"Good morning. Leading today: \"{lead['title']}\" ({lead['source']}), "
+        f"filed under {lead['categoryTitle']}."
+    ]
+    if highlight_titles:
+        also_str = " and ".join(highlight_titles)
+        tail = f", plus {remaining} more below" if remaining > 0 else ""
+        parts.append(f"Also worth a look today: {also_str}{tail}.")
+    return " ".join(parts)
+
+
 def generate_ai_content(item, category_title, api_key):
     """Returns (summary, why_it_matters, error_detail). On success,
     error_detail is None. On any failure, summary/why_it_matters are None
@@ -792,9 +888,23 @@ def build():
         elif ai_stats["succeeded"] < ai_stats["attempted"]:
             warnings.append(f"Gemini: {ai_stats['succeeded']}/{ai_stats['attempted']} calls succeeded -- some items fell back to rule-based summaries")
 
+    # Chief-of-Staff-style opening paragraph for the home page -- a synthesis
+    # of the already-selected `brief`, not a re-fetch. One extra Gemini call
+    # per run when a key is configured; free rule-based fallback otherwise
+    # (same contract as every other AI-optional piece in this file).
+    briefing_note = None
+    if gemini_key and brief:
+        briefing_note, briefing_error = generate_briefing_note(brief, gemini_key)
+        time.sleep(GEMINI_RATE_LIMIT_DELAY)
+        if not briefing_note:
+            warnings.append(f"Gemini: morning briefing generation failed -- {briefing_error} (using rule-based version instead)")
+    if not briefing_note:
+        briefing_note = rule_based_briefing_note(brief)
+
     digest = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "warnings": warnings,
+        "briefing": briefing_note,
         "brief": brief,
         "categories": output_categories,
     }

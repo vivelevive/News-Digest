@@ -116,14 +116,18 @@ function briefItemHtml(entry) {
     </li>`;
 }
 
-function briefHtml(brief) {
+function briefHtml(brief, briefingNote) {
   if (!brief || !brief.length) return "";
+  const note = briefingNote
+    ? `<p class="briefing-note">${escapeHtml(briefingNote)}</p>`
+    : "";
   return `
     <section class="brief" id="brief">
       <div class="section-head">
-        <h2>Today in brief</h2>
+        <h2>Your morning briefing</h2>
         <span class="section-sub">${brief.length} stories, under 5 minutes</span>
       </div>
+      ${note}
       <ol class="brief-list">${brief.map(briefItemHtml).join("")}</ol>
     </section>`;
 }
@@ -163,7 +167,7 @@ async function init() {
     const categories = data.categories || [];
     const briefOption = (data.brief && data.brief.length) ? `<option value="brief">Today in brief</option>` : "";
     select.innerHTML = `<option value="">Topic…</option>${briefOption}${selectOptionsHtml(categories)}`;
-    main.innerHTML = briefHtml(data.brief) + categories.map(sectionHtml).join("");
+    main.innerHTML = briefHtml(data.brief, data.briefing) + categories.map(sectionHtml).join("");
   } catch (err) {
     updated.textContent = "Not yet updated";
     banner.textContent = "Couldn't load today's digest yet. The first run happens on the next scheduled GitHub Actions job — check back soon, or trigger it manually from the Actions tab.";

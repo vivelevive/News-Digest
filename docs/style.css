@@ -179,6 +179,17 @@ section.brief .section-head { padding-top: 0; border-top: none; }
   font-style: italic;
 }
 
+.briefing-note {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 20px 0;
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid var(--accent);
+}
+
 ol.brief-list {
   list-style: none;
   margin: 0;
